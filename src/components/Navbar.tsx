@@ -11,8 +11,8 @@ const NAV_ITEMS: { id: PageId; label: string }[] = [
   { id: 'home', label: 'Home' },
   { id: 'fysio', label: 'Klachten & Fysio' },
   { id: 'vitaliteit', label: 'Vitaliteit & Leefstijl' },
-  { id: 'duursport', label: 'Hardlopen & Wielrennen' },
-  { id: 'over', label: 'Over Dorien' },
+  { id: 'duursport', label: 'Hardlopen & Bootcamp' },
+  { id: 'over', label: 'Team & Tarieven' },
 ];
 
 export const Navbar: React.FC<NavbarProps> = ({ activePage, onSelectPage }) => {
@@ -67,7 +67,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onSelectPage }) => {
             onClick={() => handleNavClick('contact')}
             className="px-4 py-2 text-xs sm:text-sm font-semibold text-white bg-[#184E3B] hover:bg-[#113A2B] rounded-lg transition-colors whitespace-nowrap shrink-0"
           >
-            Plan persoonlijke intake
+            Contact &amp; Afspraak
           </button>
 
           <button
@@ -111,7 +111,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onSelectPage }) => {
                 : 'text-[#43534B] hover:bg-[#F2EFE9]'
             }`}
           >
-            Contact & Afspraak maken
+            Contact &amp; Afspraak (06-14184448)
           </button>
         </nav>
       )}

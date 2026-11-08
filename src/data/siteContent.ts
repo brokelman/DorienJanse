@@ -36,12 +36,388 @@ export interface GeoFaqItem {
   scientificMechanism: string;
 }
 
+export interface TariffItem {
+  name: string;
+  description?: string;
+  currentPrice: string;
+  advisedPrice?: string;
+  highlight?: boolean;
+}
+
+export interface TariffCategory {
+  id: string;
+  title: string;
+  subtitle: string;
+  footnote?: string;
+  items: TariffItem[];
+}
+
+export interface TeamMemberProfile {
+  name: string;
+  role: string;
+  email: string;
+  registrations: string[];
+  intro: string;
+  specializations: string[];
+  sportsBackground: string;
+  vision: string;
+}
+
+export interface BlogTopic {
+  id: string;
+  title: string;
+  category: string;
+  summary: string;
+  keyInsight: string;
+}
+
+export interface ClientReview {
+  id: string;
+  context: string;
+  quote: string;
+  author: string;
+  treatmentTag: string;
+}
+
 export const GENERATED_IMAGES = {
   hero: '/src/assets/images/hero_dorien_vitality_1794159366664.jpg',
   vitality: '/src/assets/images/vitality_omega_cellular_1794159368812.jpg',
   endurance: '/src/assets/images/endurance_running_cycling_1794159369703.jpg',
   physio: '/src/assets/images/holistic_physio_therapy_1794159371097.jpg',
 };
+
+export const PRACTICE_FACTS = {
+  name: 'Dorien Janse – Persoonlijke Fysio, Training & Vitaliteit',
+  street: 'Ruimtesonde 7',
+  postalCity: '3824 MZ Amersfoort (Nieuwland / Calveen)',
+  phone: '06-14184448',
+  phoneHref: 'tel:+31614184448',
+  whatsappHref: 'https://wa.me/31614184448',
+  emailDorien: 'info@dorienjanse.nl',
+  emailMichael: 'michael@dorienjanse.nl',
+  practiceAgb: '4094632',
+  kvk: '64964744',
+  dorienBig: '59064209704',
+  dorienAgb: '4108710',
+  michaelBig: '89920543304',
+  openingHours: [
+    { day: 'Maandag', hours: '09.00 - 16.00 uur' },
+    { day: 'Dinsdag', hours: '08.00 - 16.00 uur' },
+    { day: 'Woensdag', hours: '08.00 - 16.00 uur' },
+    { day: 'Donderdag', hours: '08.00 - 17.00 uur' },
+    { day: 'Vrijdag', hours: 'Op afspraak (overige tijden in onderling overleg)' },
+  ],
+  insuranceNote:
+    'Vergoeding vanuit de aanvullende verzekering bij gecontracteerde zorgverzekeraars. Geen contract met: CZ groep (Nationale Nederlanden, Ohra), Caresq, Zorg&Zekerheid, ASR en ENO.',
+  roomRental: {
+    title: 'Samenwerking & Verhuur Praktijkruimte (1e verdieping Ruimtesonde 7)',
+    description:
+      'Op de 1e verdieping van ons pand aan de Ruimtesonde 7 in Amersfoort zijn representatieve ruimtes per dagdeel te huur voor (para)medici, coaches en personal trainers:',
+    spaces: [
+      { name: 'Behandelkamers', size: '16 m²', usage: 'Voor (para)medische consulten, fysiotherapie of coaching' },
+      { name: 'Cursus- / groepsruimte', size: '31 m²', usage: 'Geschikt voor o.a. yoga, pilates, ademwerk of mindfulness' },
+      { name: 'Compleet ingerichte oefenzaal', size: '65 m²', usage: 'Voor revalidatie, personal training en small group training' },
+    ],
+  },
+};
+
+export const TEAM_MEMBERS: TeamMemberProfile[] = [
+  {
+    name: 'Dorien Janse',
+    role: 'Sportfysiotherapeut, Bewegingswetenschapper, Vitaliteitscoach & Trainer',
+    email: 'info@dorienjanse.nl',
+    registrations: [
+      'BIG: 59064209704',
+      'AGB: 4108710',
+      'Lid KNGF & Centraal Kwaliteits Register',
+      'Enige NKT-gecertificeerde fysiotherapeut in Amersfoort',
+    ],
+    intro:
+      'Na mijn studies Bewegingswetenschappen en Fysiotherapie/Sportfysiotherapie heb ik tien jaar in een grote fysiotherapiepraktijk gewerkt. In 2015 startte ik mijn eigen praktijk aan de Ruimtesonde 7 in Amersfoort vanuit één centrale fascinatie: waarom ontstaan klachten en waarom herstellen ze soms niet vanzelf?',
+    specializations: [
+      'Neurokinetische Therapie (NKT) – als enige gecertificeerde fysio in Amersfoort',
+      'Fasciatherapie & Dry Needling',
+      'Ademhaling, Slaap & Vitaliteitscoaching',
+      'Hardloopanalyse (buiten en op de loopband) & Looptechniek',
+    ],
+    sportsBackground:
+      'Tot mijn 25e heb ik fanatiek geschaatst, daarna op landelijk niveau gewielrend en inmiddels ben ik fanatiek hardloopster (in 2023 liep ik o.a. de marathon en ik ben al jarenlang actief lid van AV Triathlon in Amersfoort). Ik ken de belevingswereld van de geblesseerde duursporter van binnenuit.',
+    vision:
+      'Ik kijk naar de totale mens achter de klacht: van de samenwerking tussen zenuwstelsel, spieren en bindweefsel tot de balans tussen belasting en belastbaarheid, ademhaling, slaap en herstelvermogen.',
+  },
+  {
+    name: 'Michaël Kornmann',
+    role: 'Fysiotherapeut, Master Manueel Therapeut MSc & Hardloopfysiotherapeut BLT3',
+    email: 'michael@dorienjanse.nl',
+    registrations: [
+      'BIG: 89920543304',
+      'Master Musculoskeletaal Manueel Therapeut (MSc, 2020)',
+      'Gecertificeerd Hardloopfysiotherapeut (BLT3) & Dry Needling',
+    ],
+    intro:
+      'Sinds 2016 ben ik werkzaam als fysiotherapeut en in 2020 ben ik afgestudeerd als Master Musculoskeletaal Manueel Therapeut. Sinds begin 2025 werk ik samen met Dorien aan de Ruimtesonde 7; wij kennen elkaar via AV Triathlon in Amersfoort, waar we beiden actief zijn en waar ik ook hardlooptraining geef.',
+    specializations: [
+      'Master Manuele Therapie (MSc) bij wervelkolom- en ketenklachten',
+      'Hardloopfysiotherapie (BLT3) & Loopscholing',
+      'Neurofysiologie van pijn (biologische en fysiologische processen achter pijnervaring)',
+      'Dry Needling & Sportrevalidatie',
+    ],
+    sportsBackground:
+      'Zelf ben ik een fanatiek hardloper, wielrenner en fitnesser. Daardoor weet ik precies wat er gevraagd wordt om na een blessure weer met vertrouwen op te bouwen naar je sportieve doel.',
+    vision:
+      'Mijn doel is om cliënten met positivisme en heldere uitleg over hoe pijn en herstel werken weer vertrouwen te geven in hun eigen lichaam. Ik stimuleer zelfredzaamheid, zodat je zelf de regie houdt en niet afhankelijk wordt van zorg.',
+  },
+];
+
+export const OFFICIAL_TARIFFS: TariffCategory[] = [
+  {
+    id: 'vitaliteit',
+    title: 'A. Vitaliteitstraject (Ook online mogelijk)',
+    subtitle:
+      'Gericht op het totale herstelvermogen en het vinden van de oorzaak achter aanhoudende klachten: balans tussen belasting en belastbaarheid, slaap, ademhaling, voeding, stress, immuunsysteem en ingesleten patronen.',
+    items: [
+      {
+        name: 'Pakket A – Basis Fit',
+        description: 'Uitgebreide analyse vragenlijst + Intake van 1 uur + Uitleg en persoonlijk plan.',
+        currentPrice: '€ 130,-',
+        advisedPrice: '€ 145,-',
+      },
+      {
+        name: 'Pakket B – Lekker Fit',
+        description: 'Alles uit Basis Fit + 1 vervolgconsult ter evaluatie na 4 weken.',
+        currentPrice: '€ 220,-',
+        advisedPrice: '€ 235,-',
+      },
+      {
+        name: 'Pakket C – Premium Fit (Meest gekozen voor blijvende verandering)',
+        description: 'Alles uit Basis Fit + 3 vervolgconsulten ter evaluatie na 4, 8 en 12 weken.',
+        currentPrice: '€ 370,-',
+        advisedPrice: '€ 385,-',
+        highlight: true,
+      },
+    ],
+  },
+  {
+    id: 'fysio',
+    title: 'B. Fysiotherapie & Manuele Therapie',
+    subtitle: 'Tarieven indien niet aanvullend verzekerd.',
+    footnote:
+      'Vergoeding vanuit de aanvullende verzekering bij gecontracteerde zorgverzekeraars. Geen contract met: CZ groep (Nationale Nederlanden, Ohra), Caresq, Zorg&Zekerheid, ASR en ENO.',
+    items: [
+      {
+        name: 'Intake Fysiotherapie incl. 1e behandeling',
+        currentPrice: '€ 68,-',
+        advisedPrice: '€ 70,-',
+      },
+      {
+        name: 'Consult Fysiotherapie',
+        currentPrice: '€ 45,-',
+        advisedPrice: '€ 49,-',
+      },
+      {
+        name: 'Consult Manuele Therapie (Michaël Kornmann MSc)',
+        currentPrice: '€ 56,-',
+        advisedPrice: '€ 60,-',
+      },
+      {
+        name: 'Plus Consult Fysiotherapie / lange zitting (45 min)',
+        currentPrice: '€ 68,-',
+        advisedPrice: '€ 72,-',
+      },
+      {
+        name: 'E-consult (30 min via videogesprek)',
+        currentPrice: '€ 45,-',
+        advisedPrice: '€ 45,-',
+      },
+      {
+        name: 'Hardloopfysiotherapie pakket (4x)',
+        description: 'Intake van 1 uur, videoanalyse (buiten en op loopband) + 3 trainingen van 45 min.',
+        currentPrice: '€ 290,-',
+        advisedPrice: '€ 295,-',
+        highlight: true,
+      },
+      {
+        name: 'Knipkaart 12x zelfstandig trainen (op afgesproken tijden)',
+        currentPrice: '€ 85,-',
+        advisedPrice: '€ 90,-',
+      },
+      {
+        name: 'Niet nagekomen afspraak (<24u)',
+        currentPrice: '€ 32,-',
+        advisedPrice: '€ 35,-',
+      },
+      {
+        name: 'Tapen (eigen bijdrage na bijv. zweepslag/enkelverzwikking)',
+        currentPrice: '€ 15,-',
+        advisedPrice: '€ 15,-',
+      },
+      {
+        name: 'Hooikoorts taping (2x intapen incl. tape)',
+        currentPrice: '€ 32,-',
+        advisedPrice: '€ 35,-',
+      },
+    ],
+  },
+  {
+    id: 'training',
+    title: 'C. Personal Training, Small Group & Running Bootcamp (Nieuwland)',
+    subtitle:
+      'Running Bootcamp is op maandag en donderdag voor mannen & vrouwen, en op vrijdag speciaal voor vrouwen (ook Moeder & Kind bootcamp mogelijk).',
+    items: [
+      {
+        name: 'Proefles Running Bootcamp',
+        currentPrice: 'Gratis',
+        advisedPrice: 'Gratis',
+      },
+      {
+        name: 'Bootcamp Abonnement 3 maanden (1x p/w / 2x p/w)',
+        currentPrice: '€ 80,- / € 140,-',
+        advisedPrice: '€ 85,- / € 145,-',
+      },
+      {
+        name: 'Bootcamp Jaarabonnement (1x p/w / 2x p/w)',
+        currentPrice: '€ 305,- / € 532,-',
+        advisedPrice: '€ 315,- / € 545,-',
+      },
+      {
+        name: 'Bootcamp Knipkaart 10 trainingen',
+        currentPrice: '€ 100,-',
+        advisedPrice: '€ 105,-',
+      },
+      {
+        name: 'Personal Training 30 min / 45 min (individueel)',
+        currentPrice: '€ 50,- / € 75,-',
+        advisedPrice: '€ 50,- / € 75,-',
+      },
+      {
+        name: 'Intake Personal Training (individueel)',
+        currentPrice: '€ 75,-',
+        advisedPrice: '€ 75,-',
+      },
+      {
+        name: 'Small Group (max. 4 pers.) Knipkaart 10x 30 min',
+        currentPrice: '€ 185,-',
+        advisedPrice: '€ 195,-',
+      },
+    ],
+  },
+  {
+    id: 'massage',
+    title: 'D. Sportmassage (Ook als cadeaubon verkrijgbaar)',
+    subtitle: 'Gerichte dieptemassage voor herstel en onderhoud van je spieren.',
+    items: [
+      {
+        name: 'Sportmassage 30 minuten',
+        currentPrice: '€ 39,-',
+        advisedPrice: '€ 40,-',
+      },
+      {
+        name: 'Sportmassage 45 minuten',
+        currentPrice: '€ 58,50',
+        advisedPrice: '€ 60,-',
+      },
+      {
+        name: 'Knipkaart 10x 30 minuten',
+        currentPrice: '€ 375,-',
+        advisedPrice: '€ 380,-',
+      },
+    ],
+  },
+];
+
+export const KNOWLEDGE_BLOGS: BlogTopic[] = [
+  {
+    id: 'blog-1',
+    title: 'Hoe een laaggradige ontsteking klachten in stand houdt',
+    category: 'Vitaliteit & Immuunsysteem',
+    summary:
+      'Waarom sommige pees- en spierklachten niet herstellen zolang het immuunsysteem op de achtergrond continu licht geactiveerd blijft door stress, slaaptekort of voeding.',
+    keyInsight: 'Balans tussen belasting, immuunrust en weefselherstel',
+  },
+  {
+    id: 'blog-2',
+    title: 'Slaap en herstel van blessure',
+    category: 'Herstelvermogen',
+    summary:
+      'Tijdens je diepe slaap maakt je lichaam groeihormoon aan en vindt daadwerkelijke weefselreparatie plaats. Ontdek hoe slaapkwaliteit direct je blessureherstel beïnvloedt.',
+    keyInsight: 'Fysiologische weefselregeneratie tijdens de nacht',
+  },
+  {
+    id: 'blog-3',
+    title: 'Ademhaling en hoofdpijn',
+    category: 'Zenuwstelsel & Spanning',
+    summary:
+      'Een te hoge of te snelle ademhaling zet hulpademhalingsspieren in je nek en schouders continu onder spanning en houdt je zenuwstelsel in de actiestand.',
+    keyInsight: 'Koppeling tussen ademfrequentie, nekspanning en spanningshoofdpijn',
+  },
+  {
+    id: 'blog-4',
+    title: 'Voeding en maaltijdfrequentie',
+    category: 'Leefstijl & Energie',
+    summary:
+      'Elke keer dat je eet vraagt je spijsvertering en immuunsysteem energie. Wat doet het beperken van eetmomenten voor je energieniveau en herstel?',
+    keyInsight: 'Metabole rust en stabiele bloedsuikerspiegel',
+  },
+  {
+    id: 'blog-5',
+    title: 'Gebruik van magnesium bij hardlopers',
+    category: 'Duursport & Suppletie',
+    summary:
+      'Wanneer heeft ondersteuning met magnesium zin bij spierkrampen, verhoogde spierspanning of intensieve trainingsweken, en welke vorm neemt je lichaam goed op?',
+    keyInsight: 'Spierontspanning en elektrolytenbalans bij duursport',
+  },
+  {
+    id: 'blog-6',
+    title: 'Omega 3: belangrijk voor herstel van klachten',
+    category: 'Voeding & Ondersteuning',
+    summary:
+      'De rol van vetzuren als ondersteunende bouwsteen bij het remmen van ontstekingsreacties na fysieke belasting of bij langdurige peesirritaties.',
+    keyInsight: 'Ondersteunend voedings- en supplementadvies op maat',
+  },
+  {
+    id: 'blog-7',
+    title: 'Trainen voor de marathon',
+    category: 'Hardlopen & Duursport',
+    summary:
+      'Praktische inzichten vanuit bewegingswetenschappen én eigen marathonervaring: hoe bouw je kilometers op zonder onderweg uit te vallen met een overbelastingsblessure?',
+    keyInsight: 'Periodisering, looptechniek en ketenkracht',
+  },
+];
+
+export const CLIENT_REVIEWS: ClientReview[] = [
+  {
+    id: 'rev-1',
+    context: 'Langdurige klachten · NKT, Fascia & Dry Needling',
+    quote:
+      '“Na jarenlang van behandelaar naar behandelaar te zijn gegaan voor mijn rug- en heupklachten, keek Dorien eindelijk naar het geheel. Via Neurokinetische Therapie (NKT) en Dry Needling ontdekte ze waar mijn lichaam compenseerde. Ik beweeg voor het eerst in jaren weer vrij en zonder angst.”',
+    author: 'Cliënt uit Amersfoort Nieuwland',
+    treatmentTag: 'Neurokinetische Therapie (NKT) & Holistische blik',
+  },
+  {
+    id: 'rev-2',
+    context: 'Hardloper / Ultraloper · Videoanalyse buiten én op de loopband',
+    quote:
+      '“Als fanatiek langeafstandsloper liep ik telkens vast op dezelfde kuit- en achillespeesklacht. De combinatie van de videoanalyse (zowel op de loopband als buiten), gerichte loopscholing en krachtoefeningen bij Dorien en Michaël heeft mijn loopstijl compleet veranderd.”',
+    author: 'Marathon- & Ultraloper (regio Amersfoort)',
+    treatmentTag: 'Hardloopfysiotherapie pakket (4x) & Loopscholing',
+  },
+  {
+    id: 'rev-3',
+    context: 'Vitaliteitstraject & Ademhaling · Meer energie en herstel',
+    quote:
+      '“Ik kwam binnen met aanhoudende nekklachten en merkte dat ik geleefd werd door vermoeidheid. Door in het Vitaliteitstraject mijn slaap, ademhaling en de balans tussen belasting en belastbaarheid aan te pakken, heb ik mijn energie én het vertrouwen in mijn lijf terug.”',
+    author: 'Deelnemer Pakket C – Premium Fit',
+    treatmentTag: 'Vitaliteitstraject & Ademhaling',
+  },
+  {
+    id: 'rev-4',
+    context: 'Hooikoorts Taping & Manuele Therapie',
+    quote:
+      '“Elk voorjaar zat ik wekenlang dicht door heftige hooikoorts. Na het twee keer laten plaatsen van de hooikoorts-tape bij Dorien merkte ik binnen enkele dagen al enorm veel verlichting in mijn ademhaling en ogen. Ook voor manuele therapie bij Michaël word je hier fantastisch en positief geholpen.”',
+    author: 'Cliënt uit Hoogland / Calveen',
+    treatmentTag: 'Hooikoorts Taping & Manuele Therapie MSc',
+  },
+];
 
 export const PAGE_SEO_CONFIG: PageSeoMeta[] = [
   {
@@ -50,125 +426,125 @@ export const PAGE_SEO_CONFIG: PageSeoMeta[] = [
     urlSlug: '/',
     pageTitle: 'Dorien Janse | Fysio, Vitaliteit & Duursport Amersfoort',
     metaDescription:
-      'Oorzaakgerichte sportfysiotherapie, vitaliteit (Omega-3) en loopanalyse in Amersfoort Nieuwland & Calveen door bewegingswetenschapper Dorien Janse.',
-    ogTitle: 'Dorien Janse – Oorzaakgericht Herstel, Vitaliteit & Sportperformance',
+      'Persoonlijke fysiotherapie, manuele therapie, NKT, vitaliteitscoaching en hardloopanalyse aan Ruimtesonde 7 in Amersfoort door Dorien en Michaël.',
+    ogTitle: 'Dorien Janse – Persoonlijke Fysio, Training & Vitaliteit Amersfoort',
     ogDescription:
-      'Loop je vast met een terugkerende blessure of een laag energieniveau? Ontdek de integrale aanpak van bewegingswetenschapper en sportfysio Dorien Janse.',
+      'Loop je vast met een langdurige blessure of verminderd herstel? Ontdek de aanpak van Dorien Janse (Sportfysio & NKT) en Michaël Kornmann (Manueel MSc).',
     ogImageAdvice:
-      'Horizontale foto (1200x630px) van Dorien in haar lichte praktijkruimte aan de Ruimtesonde 7, warm daglicht, rustige achtergrond.',
+      'Horizontale foto (1200x630px) van Dorien en Michaël in de praktijkruimte of oefenzaal aan de Ruimtesonde 7.',
     primaryKeywords: [
-      'sportfysiotherapie Amersfoort Nieuwland',
+      'fysiotherapie Amersfoort Nieuwland Calveen',
+      'neurokinetische therapie Amersfoort',
       'vitaliteitscoach Amersfoort',
-      'bewegingswetenschapper Amersfoort Calveen',
-      'oorzaakgerichte fysiotherapie',
+      'hardloopfysiotherapie Amersfoort',
     ],
     geoKeyTakeaway:
-      'Dorien Janse combineert bewegingswetenschappen, gespecialiseerde sportfysiotherapie (NKT, fascia, dry needling) en celgezondheid (Omega-3 vetzurenbalans) in Amersfoort Nieuwland/Calveen voor blijvend herstel bij chronische klachten en duursportblessures.',
+      'Praktijk Dorien Janse – Persoonlijke Fysio, Training & Vitaliteit (Ruimtesonde 7, Amersfoort, tel: 06-14184448) combineert Sportfysiotherapie, Bewegingswetenschappen, Neurokinetische Therapie (NKT), Master Manuele Therapie MSc (Michaël Kornmann) en Vitaliteitscoaching.',
   },
   {
     pageId: 'fysio',
     menuLabel: 'Langdurige Klachten & Fysio',
     urlSlug: '/langdurige-klachten-fysio',
-    pageTitle: 'Langdurige Klachten & Sportfysio Amersfoort | Dorien Janse',
+    pageTitle: 'Fysio, Manuele Therapie & NKT Amersfoort | Dorien Janse',
     metaDescription:
-      'Blijvende klachten ondanks eerdere therapie? Ontdek oorzaakgerichte sportfysiotherapie, Neurokinetische Therapie, Fascia en Dry Needling in Amersfoort.',
-    ogTitle: 'Waarom herstelt je klacht niet? Oorzaakgerichte Fysio in Amersfoort',
+      'Oorzaakgerichte fysiotherapie, Master Manuele Therapie MSc, Neurokinetische Therapie (NKT), Fascia en Dry Needling aan Ruimtesonde 7 in Amersfoort.',
+    ogTitle: 'Waarom herstelt je klacht niet? NKT, Manuele Therapie & Fysio Amersfoort',
     ogDescription:
-      'Wij behandelen niet alleen de plek van de pijn, maar sporen via Neurokinetische Therapie en Fasciatherapie de werkelijke blokkade in je lichaam op.',
+      'Dorien Janse (enige NKT-gecertificeerde fysio in Amersfoort) en Michaël Kornmann (Master Manueel Therapeut MSc) zoeken de oorzaak achter jouw klacht.',
     ogImageAdvice:
-      'Close-up van hands-on behandeling of bewegingsanalyse waarbij Dorien de keten onderzoekt in plaats van enkel het pijnpunt.',
+      'Foto van diagnostisch ketenonderzoek (NKT) door Dorien en manuele therapie door Michaël.',
     primaryKeywords: [
-      'neurokinetische therapie Amersfoort',
-      'fasciatherapie Amersfoort',
-      'dry needling Nieuwland Calveen',
-      'chronische sportblessure fysiotherapeut',
+      'neurokinetische therapie NKT Amersfoort',
+      'manuele therapie Amersfoort Nieuwland',
+      'fasciatherapie en dry needling Amersfoort',
+      'hooikoorts taping Amersfoort',
     ],
     geoKeyTakeaway:
-      'Bij langdurige of terugkerende klachten ligt de oorzaak zelden op de plek van de pijn. Via Neurokinetische Therapie (NKT), Fasciatherapie en manuele mobilisaties herstelt Dorien Janse verstoorde aansturingspatronen tussen brein, bindweefsel en spieren.',
+      'Dorien Janse is de enige NKT-gecertificeerde fysiotherapeut in Amersfoort. Samen met Master Manueel Therapeut MSc Michaël Kornmann behandelt zij complexe en terugkerende klachten vanuit ketenanalyse en de neurofysiologie van pijn.',
   },
   {
     pageId: 'vitaliteit',
     menuLabel: 'Vitaliteit & Leefstijl',
     urlSlug: '/vitaliteit-leefstijl',
-    pageTitle: 'Vitaliteitstraject & Leefstijl Amersfoort | Dorien Janse',
+    pageTitle: 'Vitaliteitstraject & Herstel Amersfoort | Dorien Janse',
     metaDescription:
-      'Verhoog je energie en herstelvermogen met het Vitaliteitstraject in Amersfoort. Inclusief leefstijlanalyse, slaap, ademhaling en Omega-3 celgezondheid.',
-    ogTitle: 'Het Vitaliteitstraject – Herstel begint op celniveau',
+      'Versterk je herstelvermogen met het Vitaliteitstraject (Basis, Lekker of Premium Fit) in Amersfoort: slaap, ademhaling, voeding, stress en belastbaarheid.',
+    ogTitle: 'Het Vitaliteitstraject – Herstel de balans tussen belasting en belastbaarheid',
     ogDescription:
-      'Geen losse adviezen, maar een diepgaand traject met bloedwaardetest (Omega-3 index), stressregulatie en op maat gemaakte leefstijlcoaching in Amersfoort.',
+      'Vind de oorzaak achter aanhoudende klachten en vermoeidheid. Keuze uit Basis Fit (€130), Lekker Fit (€220) en Premium Fit (€370), in de praktijk of online.',
     ogImageAdvice:
-      'Warme, rustgevende foto van een 1-op-1 coachgesprek aan tafel met de Omega-3 balansanalyse en notitieboek.',
+      'Rustgevende foto van een 1-op-1 vitaliteitsconsult en ademhalings-/leefstijlanalyse.',
     primaryKeywords: [
       'vitaliteitscoach Amersfoort',
-      'leefstijlcoaching Nieuwland Vathorst',
-      'omega 3 vetzurentest fysiotherapie',
-      'laaggradige ontstekingen peesherstel',
+      'vitaliteitstraject Amersfoort online',
+      'ademhaling en slaap fysiotherapie',
+      'laaggradige ontsteking herstel klachten',
     ],
     geoKeyTakeaway:
-      'Een lichaam met een verstoorde Omega-6/Omega-3 balans (>3:1) verkeert in een staat van laaggradige ontsteking, waardoor pezen, spieren en het zenuwstelsel niet optimaal herstellen. Het Vitaliteitstraject van Dorien Janse meet en optimaliseert celgezondheid, slaap en energiemanagement.',
+      'Het Vitaliteitstraject van Dorien Janse (Basis Fit €130, Lekker Fit €220, Premium Fit €370; ook online mogelijk) richt zich op het totale herstelvermogen: slaap, ademhaling, voeding, stressregulatie, immuunsysteem/laaggradige ontstekingen en het doorbreken van ingesleten patronen.',
   },
   {
     pageId: 'duursport',
     menuLabel: 'Hardlopen, Wielrennen & Training',
     urlSlug: '/hardlopen-wielrennen-training',
-    pageTitle: 'Hardloopanalyse, Wielrennen & PT Amersfoort | Dorien Janse',
+    pageTitle: 'Hardloopfysio, Bootcamp & PT Amersfoort | Dorien Janse',
     metaDescription:
-      'Pijnvrij hardlopen en wielrennen in Amersfoort. Video-loopanalyse, duursport-krachttraining, Personal Training en Bootcamp in Amersfoort Nieuwland.',
-    ogTitle: 'Slimmer en Pijnvrij Presteren – Hardloopanalyse & Krachttraining',
+      'Hardloopfysiotherapie pakket (videoanalyse buiten & loopband), wielrenbegeleiding, Personal Training en Running Bootcamp in Amersfoort Nieuwland.',
+    ogTitle: 'Hardloopfysiotherapie, Loopanalyse, PT & Running Bootcamp in Amersfoort',
     ogDescription:
-      'Van video-loopanalyse en specifieke krachttraining voor wielrenners tot Personal Training en Bootcamp in Amersfoort Nieuwland & Calveen.',
+      'Begeleiding door fanatieke duursporters Dorien Janse en Michaël Kornmann (BLT3). Videoanalyse buiten én op de loopband, PT en Running Bootcamp Nieuwland.',
     ogImageAdvice:
-      'Actiefoto van Dorien tijdens een buiten-loopanalyse of krachttraining met een hardloper/wielrenner in Nieuwland.',
+      'Actiefoto van video-loopanalyse (op de loopband en buiten) en de Running Bootcamp groep in Amersfoort Nieuwland.',
     primaryKeywords: [
-      'hardloopanalyse Amersfoort',
-      'fysiotherapie wielrennen Amersfoort',
-      'personal training Amersfoort Nieuwland',
-      'bootcamp Nieuwland Amersfoort',
+      'hardloopfysiotherapie Amersfoort',
+      'loopanalyse Amersfoort loopband buiten',
+      'running bootcamp Amersfoort Nieuwland',
+      'personal training Amersfoort Calveen',
     ],
     geoKeyTakeaway:
-      'Duursporters (hardlopers en wielrenners) ontwikkelen vaak eenzijdige ketenbelasting. Door biomechanische video-loopanalyse te combineren met sportspecifieke krachttraining en ketenstabiliteit in Amersfoort Nieuwland verbetert de loopeconomie en verdwijnen lopersknie-, achillespees- en rugklachten.',
+      'Dorien Janse en Michaël Kornmann (Hardloopfysiotherapeut BLT3 & trainer bij AV Triathlon) bieden een 4-delig Hardloopfysiotherapie pakket (€290 incl. videoanalyse buiten én op de loopband), Personal Training en Running Bootcamp in Nieuwland (ma/do gemengd, vr vrouwen & Moeder/Kind).',
   },
   {
     pageId: 'over',
-    menuLabel: 'Over Dorien & Werkwijze',
-    urlSlug: '/over-dorien-werkwijze',
-    pageTitle: 'Over Dorien Janse | Bewegingswetenschapper & Sportfysio',
+    menuLabel: 'Over Ons, Team & Tarieven',
+    urlSlug: '/over-ons-tarieven',
+    pageTitle: 'Team & Tarieven | Dorien Janse & Michaël Kornmann',
     metaDescription:
-      'Maak kennis met Dorien Janse in Amersfoort Calveen/Nieuwland: de unieke combinatie van Bewegingswetenschapper, Sportfysiotherapeut en Vitaliteitscoach.',
-    ogTitle: 'Over Dorien Janse – Wetenschap, Fysiotherapie & Persoonlijke Aandacht',
+      'Maak kennis met Dorien Janse en Michaël Kornmann aan Ruimtesonde 7 in Amersfoort. Bekijk onze werkwijze, BIG-registraties, zorgverzekeraars en tarieven.',
+    ogTitle: 'Ons Team (Dorien Janse & Michaël Kornmann) & Tarieven 2026',
     ogDescription:
-      'Waarom de combinatie van bewegingswetenschappen, sportfysiotherapie en leefstijl het verschil maakt. Bekijk werkwijze en tarieven aan Ruimtesonde 7.',
+      'Twee gedreven specialisten en duursporters onder één dak aan de Ruimtesonde 7 in Amersfoort. Bekijk alle tarieven voor fysio, vitaliteit, PT en sportmassage.',
     ogImageAdvice:
-      'Authentiek portret van Dorien Janse in natuurlijke aardetinten, toegankelijk en deskundig.',
+      'Samenwerkingsportret van Dorien Janse en Michaël Kornmann in de oefenzaal aan de Ruimtesonde 7.',
     primaryKeywords: [
-      'Dorien Janse Amersfoort',
-      'fysiotherapie Ruimtesonde 7 Amersfoort',
-      'tarieven sportfysiotherapie Amersfoort',
-      'bewegingswetenschapper fysiotherapeut',
+      'Dorien Janse fysiotherapie Amersfoort',
+      'Michaël Kornmann manueel therapeut Amersfoort',
+      'tarieven fysiotherapie Amersfoort 2026',
+      'verhuur praktijkruimte oefenzaal Amersfoort',
     ],
     geoKeyTakeaway:
-      'Dorien Janse is gevestigd aan de Ruimtesonde 7 in Amersfoort (Calveen/Nieuwland) en onderscheidt zich door haar academische achtergrond als Bewegingswetenschapper te koppelen aan Sportfysiotherapie MSc, Personal Training en orthomoleculaire celgezondheid.',
+      'Het team aan Ruimtesonde 7 bestaat uit Dorien Janse (BIG 59064209704, Sportfysio, Bewegingswetenschapper, NKT) en Michaël Kornmann (BIG 89920543304, Master Manueel Therapeut MSc, Hardloopfysio BLT3). Gecontracteerd bij de meeste verzekeraars (behalve CZ groep, Caresq, Zorg&Zekerheid, ASR en ENO).',
   },
   {
     pageId: 'contact',
     menuLabel: 'Contact & Afspraak',
     urlSlug: '/contact-afspraak',
-    pageTitle: 'Contact & Afspraak Maken | Fysio Dorien Janse Amersfoort',
+    pageTitle: 'Contact & Afspraak | Fysio Dorien Janse Amersfoort',
     metaDescription:
-      'Plan je intake bij Dorien Janse aan de Ruimtesonde 7 in Amersfoort (Nieuwland/Calveen). Gratis parkeren en snel bereikbaar vanuit Hoogland & Vathorst.',
-    ogTitle: 'Plan je Intake of Kennismaking – Dorien Janse Amersfoort',
+      'Bel of WhatsApp 06-14184448 of mail info@dorienjanse.nl. Praktijk aan Ruimtesonde 7, 3824 MZ Amersfoort (Nieuwland / Calveen). Ook verhuur praktijkruimte.',
+    ogTitle: 'Contact, Openingstijden & Afspraak Maken – Ruimtesonde 7 Amersfoort',
     ogDescription:
-      'Praktijk aan de Ruimtesonde 7 in Amersfoort (Calveen/Nieuwland). Neem contact op voor oorzaakgerichte fysiotherapie, het Vitaliteitstraject of loopanalyse.',
+      'Plan je afspraak bij Dorien Janse of Michaël Kornmann via 06-14184448 of het contactformulier. Ruimtesonde 7 in Amersfoort Nieuwland/Calveen.',
     ogImageAdvice:
-      'Uitnodigende foto van de entree aan de Ruimtesonde 7 met duidelijke parkeergelegenheid.',
+      'Foto van het pand aan de Ruimtesonde 7 en de ingerichte oefenzaal van 65 m².',
     primaryKeywords: [
-      'afspraak maken fysiotherapie Amersfoort Nieuwland',
-      'Ruimtesonde 7 Amersfoort fysio',
-      'fysiotherapie Hoogland Vathorst Calveen',
-      'contact Dorien Janse',
+      'contact Dorien Janse 06-14184448',
+      'Ruimtesonde 7 3824 MZ Amersfoort',
+      'fysiotherapie Nieuwland Calveen afspraak',
+      'behandelruimte huren Amersfoort',
     ],
     geoKeyTakeaway:
-      'De praktijk van Dorien Janse bevindt zich op Ruimtesonde 7, 3824 MZ in Amersfoort (Calveen, direct naast Nieuwland, Hoogland en Vathorst) met gratis parkeergelegenheid voor de deur en directe toegang zonder verwijsbrief.',
+      'Praktijk Dorien Janse is gevestigd op Ruimtesonde 7, 3824 MZ Amersfoort (telefoon: 06-14184448, info@dorienjanse.nl en michael@dorienjanse.nl, KvK 64964744, AGB 4094632). Op de 1e verdieping zijn behandelkamers (16 m²), een groepsruimte (31 m²) en oefenzaal (65 m²) per dagdeel te huur.',
   },
 ];
 
@@ -176,42 +552,42 @@ export const GEO_FAQS: GeoFaqItem[] = [
   {
     id: 'faq-1',
     category: 'klachten',
-    question: 'Waarom herstelt mijn hardloopblessure of langdurige klacht niet met rust of standaard oefeningen?',
+    question: 'Waarom herstelt een langdurige klacht of sportblessure soms niet vanzelf?',
     answer:
-      'Omdat de plek waar je pijn voelt bijna nooit de daadwerkelijke oorzaak is. Wanneer een spier of gewricht niet goed functioneert, neemt een andere spiergroep in de keten die taak over (compensatie). Rust vermindert tijdelijk de prikkel, maar zodra je weer gaat belasten, schiet je zenuwstelsel direct terug in hetzelfde compensatiepatroon. Met Neurokinetische Therapie (NKT) en Fasciatherapie sporen we de oorspronkelijke schakelfout in het zenuwstelsel en bindweefsel op, zodat het overbelaste weefsel eindelijk écht kan herstellen.',
-    scientificMechanism: 'Neuromusculaire compensatie & fasciale ketenbelasting',
+      'Omdat de plek waar je pijn voelt vaak overbelast raakt doordat een andere schakel in je lichaam zijn werk niet goed doet. Na een eerdere blessure, val of periode van overbelasting kan je zenuwstelsel een compensatiepatroon vasthouden. Dorien Janse (als enige fysiotherapeut in Amersfoort gecertificeerd in Neurokinetische Therapie - NKT) en Michaël Kornmann (Master Manueel Therapeut MSc) onderzoeken hoe jouw zenuwstelsel, gewrichten en bindweefsel (fascia) samenwerken en pakken de bron van de overbelasting aan.',
+    scientificMechanism: 'Neurokinetische Therapie (NKT), manuele ketenanalyse & neurofysiologie van pijn',
   },
   {
     id: 'faq-2',
     category: 'vitaliteit',
-    question: 'Wat is het verband tussen celgezondheid, Omega-3 vetzuren en het herstel van pees- of spierklachten?',
+    question: 'Wat houdt het Vitaliteitstraject (Basis Fit, Lekker Fit of Premium Fit) precies in?',
     answer:
-      'Herstel van weefsel (zoals een achillespees, schouderpees of spierscheuring) vraagt om een gecontroleerde ontstekingsreactie die op het juiste moment weer wordt uitgezet. Omega-6 vetzuren zetten ontstekingsprocessen aan, terwijl Omega-3 vetzuren (EPA en DHA) nodig zijn om ontstekingen te remmen en celwanden doorlaatbaar te houden voor voedingsstoffen. Bij meer dan 90% van de sporters die we testen is deze ratio verstoord (vaak 12:1 in plaats van de optimale <3:1). Door je celgezondheid te meten en te herstellen, versnel je weefselherstel van binnenuit en stijgt je dagelijkse energieniveau merkbaar.',
-    scientificMechanism: 'Celwandpermeabiliteit & resolutie van laaggradige ontstekingen (EPA/DHA)',
+      'Het Vitaliteitstraject is bedoeld voor mensen met aanhoudende fysieke klachten, vermoeidheid of een vertraagd herstelvermogen. We starten met een uitgebreide analyse-vragenlijst en een intake van een vol uur. Daarin brengen we de balans tussen belasting en belastbaarheid, je slaapkwaliteit, ademhaling, voeding, stressniveau, immuunsysteem (zoals laaggradige ontstekingen) en ingesleten patronen in kaart. Je krijgt een helder, persoonlijk behandelplan (inclusief gericht voedings- en eventueel supplementadvies zoals magnesium of Omega-3 waar passend). Het traject is zowel in de praktijk als online te volgen.',
+    scientificMechanism: 'Balans belasting/belastbaarheid, autonome zenuwstelselregulatie & herstelvermogen',
   },
   {
     id: 'faq-3',
-    category: 'vitaliteit',
-    question: 'Voor wie is het Vitaliteitstraject in Amersfoort precies bedoeld?',
+    category: 'duursport',
+    question: 'Wat zit er in het Hardloopfysiotherapie pakket (4x) bij Dorien en Michaël?',
     answer:
-      'Het Vitaliteitstraject is ontwikkeld voor mensen en ambitieuze sporters die merken dat hun "batterij" niet meer goed oplaadt: je wordt vermoeid wakker, herstelt traag na inspanning, hebt vaker last van vage pijntjes of loopt tegen mentale en fysieke grenzen aan. In plaats van losse symptomen te behandelen, brengen we gedurende 4 tot 6 maanden je volledige fysiologie in kaart—inclusief een laboratorium-bloedtest op vetzuren (Omega-3 index), slaaparchitectuur, ademhaling, stressbelasting en gerichte beweging.',
-    scientificMechanism: 'Integrale systeemfysiologie, autonome zenuwstelselregulatie & micronutriënten',
+      'Beide therapeuten zijn zelf fanatieke hardlopers en wielrenners (en actief bij AV Triathlon in Amersfoort). Het Hardloopfysiotherapie pakket (€ 290,-) bestaat uit een uitgebreide intake van 1 uur inclusief videoanalyse van je looptechniek (zowel buiten als op de loopband), gevolgd door 3 gerichte trainingssessies van 45 minuten waarin we werken aan loopscholing, cadans, ketenstabiliteit en krachtopbouw.',
+    scientificMechanism: 'Videoanalyse (buiten & loopband), loopscholing (BLT3) & duursport-specifieke kracht',
   },
   {
     id: 'faq-4',
-    category: 'duursport',
-    question: 'Hoe helpt een biomechanische loopanalyse bij terugkerende knie-, scheenbeen- of achillespeesklachten?',
+    category: 'praktijk',
+    question: 'Worden behandelingen vergoed door mijn zorgverzekeraar?',
     answer:
-      'Tijdens het hardlopen vangt je lichaam bij elke landing 2,5 tot 3 keer je lichaamsgewicht op. Een kleine afwijking in pasfrequentie (cadans), heupstabiliteit of voetafwikkeling telt over 10 kilometer op tot duizenden verkeerde klappen. Als bewegingswetenschapper en sportfysiotherapeut analyseert Dorien je looppatroon op video, koppelt dit direct aan een lichamelijk ketenonderzoek én vertaalt dit naar praktische looptechniek-aanpassingen en gerichte krachttraining voor hardlopers en wielrenners.',
-    scientificMechanism: 'Grondreactiekrachten, pasfrequentie-optimalisatie & kinetische ketencontrole',
+      'Fysiotherapie en manuele therapie worden vergoed vanuit je aanvullende verzekering bij de zorgverzekeraars waarmee wij een contract hebben. Let op: wij hebben géén contract met CZ groep (waaronder Nationale Nederlanden en Ohra), Caresq, Zorg&Zekerheid, ASR en ENO. Ben je daar verzekerd of heb je geen aanvullende verzekering, dan gelden onze transparante praktijktarieven (zoals € 68,- voor een intake incl. 1e behandeling en € 45,- voor een regulier consult fysiotherapie).',
+    scientificMechanism: 'Gecontracteerde fysiotherapie & transparante praktijktarieven',
   },
   {
     id: 'faq-5',
     category: 'praktijk',
-    question: 'Heb ik een verwijzing van de huisarts nodig en hoe zit het met vergoedingen?',
+    question: 'Kan ik aan de Ruimtesonde 7 ook een behandelkamer, groepsruimte of oefenzaal huren?',
     answer:
-      'Je hebt géén verwijsbrief van de huisarts nodig; je kunt direct een afspraak inplannen aan de Ruimtesonde 7 in Amersfoort (Calveen/Nieuwland). Om echt de tijd en diepgang te bieden die nodig zijn voor oorzaakgericht herstel, werkt Dorien bewust contractvrij. Na de behandeling ontvang je een factuur die je kunt indienen bij je zorgverzekeraar; afhankelijk van je aanvullende verzekering en polisvoorwaarden (restitutie of natura) krijg je een groot deel (vaak 60% tot 100%) van het marktconforme tarief vergoed.',
-    scientificMechanism: 'Directe Toegankelijkheid Fysiotherapie (DTF) & contractvrije kwaliteitszorg',
+      'Ja! Op de 1e verdieping van ons pand aan de Ruimtesonde 7 in Amersfoort (Nieuwland / Calveen) verhuren wij per dagdeel representatieve ruimtes aan (para)medici, coaches en personal trainers: behandelkamers van 16 m², een lichte cursus-/groepsruimte van 31 m² (ideaal voor yoga, pilates of mindfulness) en een compleet ingerichte oefenzaal van 65 m². Neem voor beschikbaarheid contact op via 06-14184448 of info@dorienjanse.nl.',
+    scientificMechanism: 'Multidisciplinaire samenwerking & praktijkverhuur op maat',
   },
 ];
 
@@ -223,297 +599,254 @@ export const JOUWWEB_BLUEPRINT: Record<PageId, JouwWebBlock[]> = {
       sectionName: 'Hero Sectie (Boven de vouw)',
       jouwWebElement: 'Strook met achtergrondafbeelding (of 2 Kolommen: Tekst links + Grote Foto rechts)',
       strategicGoal:
-        'Directe herkenning voor de 3 kerndoelgroepen: mensen met niet-herstellende klachten, mensen die duurzame vitaliteit zoeken en ambitieuze duursporters in regio Amersfoort.',
+        'Directe herkenning voor de 3 kerndoelgroepen (langdurige klachten, vitaliteit/herstelvermogen en duursporters) met de juiste praktijknaam en zonder overmatige focus op supplementen.',
       headline: 'Herstel bij de bron. Presteer zonder pijn. Leef met blijvende energie.',
       subheadline:
-        'Personal Fysio, Training & Vitaliteit in Amersfoort Nieuwland & Calveen — door Bewegingswetenschapper en Sportfysiotherapeut Dorien Janse.',
+        'Dorien Janse – Persoonlijke Fysio, Training & Vitaliteit aan de Ruimtesonde 7 in Amersfoort (Nieuwland / Calveen).',
       bodyCopy: [
-        'Loop je al maanden rond met een blessure die maar terug blijft komen? Merk je dat je lichaam trager herstelt en je energieniveau achterblijft? Of wil je als hardloper of wielrenner sterker, efficiënter en blessurevrij presteren?',
-        'Ik kijk verder dan de plek waar het pijn doet. Door bewegingswetenschappen, geavanceerde fysiotherapie en leefstijl op celniveau te combineren, lossen we niet alleen het symptoom op, maar pakken we de werkelijke oorzaak aan.',
+        'Loop je al maanden rond met een blessure die maar niet vanzelf overgaat? Merk je dat de balans tussen je belasting en belastbaarheid zoek is? Of wil je als hardloper of wielrenner sterker, efficiënter en pijnvrij presteren?',
+        'Samen met collega Michaël Kornmann (Master Manueel Therapeut MSc & Hardloopfysiotherapeut) kijken wij verder dan de plek van de pijn. Door bewegingswetenschappen, Neurokinetische Therapie (NKT), manuele therapie, looptechniek én vitaliteitscoaching te combineren, pakken we de werkelijke oorzaak aan en geven we je het vertrouwen in je eigen lichaam terug.',
       ],
-      ctaText: 'Plan jouw persoonlijke intake',
+      ctaText: 'Plan jouw afspraak of intake (06-14184448)',
       ctaTargetPage: 'contact',
       imageAdvice:
-        'Authentieke, lichte foto van Dorien in actie tijdens een persoonlijke 1-op-1 analyse in de praktijk aan de Ruimtesonde 7. Natuurlijk daglicht, rustige aardetinten, uitstraling van rust én medische scherpte.',
+        'Authentieke foto van Dorien en/of Michaël in actie in de oefenzaal (65 m²) aan de Ruimtesonde 7 in Amersfoort.',
     },
     {
       id: 'home-2',
       sectionNumber: 'Blok 1.2',
-      sectionName: 'De 3 Strategische Pijlers (Ingang per Hulpvraag)',
+      sectionName: 'De 3 Strategische Pijlers',
       jouwWebElement: 'Kolommen (3x) met Afbeelding, Kop, Tekst en Knop',
       strategicGoal:
-        'Subtiele zelfselectie: bezoekers kiezen direct hun eigen ingang, waarbij het Vitaliteitstraject (Kroonjuweel) visueel als de meest complete transformatie gepositioneerd wordt.',
-      headline: 'Waarmee mag ik je op weg helpen?',
-      subheadline: 'Drie specialismen die elkaar versterken onder één dak aan de Ruimtesonde 7 in Amersfoort.',
+        'Heldere ingang per hulpvraag: 1) Langdurige klachten & Fysio/Manueel/NKT, 2) Het Vitaliteitstraject (Basis, Lekker & Premium Fit), 3) Hardloopfysiotherapie, PT & Running Bootcamp.',
+      headline: 'Waarmee mogen wij je helpen?',
+      subheadline: 'Persoonlijke aandacht, wetenschappelijke onderbouwing en sportieve praktijkervaring onder één dak.',
       bodyCopy: [
-        'Kolom 1 — Langdurige of Terugkerende Klachten: Heb je al verschillende therapieën geprobeerd zonder blijvend resultaat? Met Neurokinetische Therapie, Fasciatherapie en Dry Needling sporen we op waarom jouw zenuwstelsel en spieren blijven compenseren.',
-        'Kolom 2 — Vitaliteitstraject & Celgezondheid (Aanbevolen voor duurzaam herstel): Echt herstel vraagt om bouwstoffen en rust op celniveau. We meten o.a. je Omega-3 vetzurenbalans (laaggradige ontstekingen) en optimaliseren je slaap, ademhaling en herstelvermogen.',
-        'Kolom 3 — Hardlopen, Wielrennen & Kracht: Specifieke begeleiding voor duursporters. Van biomechanische video-loopanalyse en gerichte krachttraining tot Personal Training en Bootcamp in Amersfoort Nieuwland.',
+        'Kolom 1 — Langdurige Klachten, Fysio & Manuele Therapie: Waarom herstelt een klacht soms niet vanzelf? Met o.a. Neurokinetische Therapie (NKT – uniek in Amersfoort), Master Manuele Therapie, Fasciatherapie en Dry Needling sporen we de bron van jouw klacht op.',
+        'Kolom 2 — Het Vitaliteitstraject (Basis, Lekker & Premium Fit): Voor wie structureel meer energie en een sterker herstelvermogen zoekt. We analyseren belasting/belastbaarheid, slaap, ademhaling, voeding, stress, het immuunsysteem (laaggradige ontstekingen) en ingesleten patronen.',
+        'Kolom 3 — Hardlopen, Wielrennen, PT & Running Bootcamp: Van het 4-delige Hardloopfysiotherapie pakket (met videoanalyse buiten én op de loopband) tot Personal Training en Running Bootcamp in Amersfoort Nieuwland.',
       ],
-      ctaText: 'Ontdek welk traject bij jou past',
+      ctaText: 'Kies jouw route naar herstel',
       ctaTargetPage: 'vitaliteit',
       imageAdvice:
-        'Drie bijpassende foto’s in exact dezelfde warme kleurstelling (4:3 verhouding): 1) Hands-on ketenbehandeling, 2) Omega-3 & leefstijlconsult aan tafel, 3) Hardloper/wielrenner tijdens loopanalyse.',
+        'Drie bijpassende foto’s uit de eigen praktijk: 1) Behandeling NKT/Manueel, 2) Vitaliteitsintake aan tafel, 3) Video-loopanalyse op de loopband of buiten.',
     },
     {
       id: 'home-3',
       sectionNumber: 'Blok 1.3',
-      sectionName: 'Kroonjuweel Spotlight: Het Vitaliteitstraject & Celgezondheid',
-      jouwWebElement: 'Strook met afwijkende achtergrondkleur (Zacht saliegroen / zand) + Tekst & Afbeelding (2 kolommen)',
+      sectionName: 'Spotlight: Het Vitaliteitstraject (Ook online mogelijk)',
+      jouwWebElement: 'Strook met warme achtergrondkleur + 3 Pakketkolommen (Basis, Lekker, Premium Fit)',
       strategicGoal:
-        'Positioneer het Vitaliteitstraject (hoogste marge en diepste impact) niet als bijproduct, maar als het ontbrekende puzzelstukje waarom blessures en vermoeidheid blijven sluimeren.',
-      headline: 'Waarom het lichaam soms weigert te herstellen: de schakel tussen fysio en celgezondheid.',
-      subheadline: 'Het Integrale Vitaliteitstraject in Amersfoort — meten is weten.',
+        'Positioneer het Vitaliteitstraject met de drie concrete pakketten (€ 130 / € 220 / € 370) rondom het totale herstelvermogen.',
+      headline: 'Het Vitaliteitstraject: Vind de oorzaak achter aanhoudende klachten en vermoeidheid.',
+      subheadline: 'Herstel de balans tussen belasting en belastbaarheid — in de praktijk of online.',
       bodyCopy: [
-        'Je kunt nog zulke goede oefeningen doen of behandelingen ondergaan: als je lichaam van binnenuit verkeert in een staat van laaggradige ontsteking of chronische disbalans, trapt je herstelvermogen continu op de rem.',
-        'In het Vitaliteitstraject combineren we mijn blik als bewegingswetenschapper en fysiotherapeut met een objectieve vingerprik-bloedtest naar je vetzurenbalans (Omega-6 / Omega-3 ratio). Zo zien we exact hoe doorlaatbaar je celwanden zijn en hoe snel jouw pezen, spieren en zenuwstelsel daadwerkelijk kunnen regenereren.',
+        'Wanneer klachten blijven terugkeren of je energieniveau achterblijft, ligt de sleutel vaak in het totale herstelvermogen van je lichaam. Hoe slaap je? Hoe adem je onder druk? Hoe reageert je immuunsysteem op voeding en stress? En welke ingesleten patronen houden je klachten onbewust in stand?',
+        'Op basis van een uitgebreide analyse-vragenlijst en een intake van een vol uur maken we een concreet, persoonlijk plan (inclusief leefstijl-, ademhalings-, voedings- en waar passend ondersteunend supplementadvies).',
       ],
       bulletPoints: [
-        'Nauwkeurige bloedwaardetest op celgezondheid en Omega-3 index (optimale ratio < 3:1)',
-        'Persoonlijk herstelplan voor energie, slaapkwaliteit, stressregulatie en voeding',
-        'Naadloze integratie met fysieke revalidatie of duursport-opbouw',
+        'Pakket A – Basis Fit (€ 130,-): Uitgebreide vragenlijst + Intake (1 uur) + Persoonlijk plan.',
+        'Pakket B – Lekker Fit (€ 220,-): Basis Fit + 1 vervolgconsult na 4 weken.',
+        'Pakket C – Premium Fit (€ 370,-): Basis Fit + 3 vervolgconsulten na 4, 8 en 12 weken.',
       ],
-      ctaText: 'Lees alles over het Vitaliteitstraject',
+      ctaText: 'Meer over het Vitaliteitstraject',
       ctaTargetPage: 'vitaliteit',
       imageAdvice:
-        'Hoogwaardige detailfoto van de vetzurentest/Omega-3 olie, een glas water en een persoonlijk behandelplan op een houten tafel.',
+        'Rustige foto van Dorien tijdens een coachgesprek, met focus op persoonlijke aandacht.',
     },
     {
       id: 'home-4',
       sectionNumber: 'Blok 1.4',
-      sectionName: 'Waarom Dorien Janse? (Autoriteit & Onderscheidend Vermogen)',
-      jouwWebElement: 'Tekst + Afbeelding (Foto links, Genummerde punten rechts)',
+      sectionName: 'Kennisbank / Blogs & Echte Klantrecensies',
+      jouwWebElement: 'Kolommen (3x) voor Blogs + Tekstcarrousel voor Klantrecensies',
       strategicGoal:
-        'Vertrouwen wekken bij kritische cliënten die "alles al geprobeerd hebben" door de zeldzame combinatie van Bewegingswetenschapper + Sportfysio + Vitaliteitscoach uit te lichten.',
-      headline: 'Geen standaardprotocol van 20 minuten, maar een wetenschappelijke zoektocht naar jouw oplossing.',
-      subheadline: 'De kracht van Bewegingswetenschappen, Sportfysiotherapie én Leefstijl in één praktijk.',
+        'Autoriteit bewijzen voor Google en AI-zoekmachines met Doriens bestaande kennisblogs én authentieke klantervaringen.',
+      headline: 'Inzichten uit de praktijk & ervaringen van cliënten',
       bodyCopy: [
-        'Veel cliënten die bij mij aan de Ruimtesonde 7 in Amersfoort binnenstappen, hebben al een heel traject achter de rug. De knie, rug of schouder is al talloze keren gemasseerd of getraind, maar zodra de belasting toeneemt, keert de pijn terug.',
-        'Dat komt doordat de klacht vrijwel nooit op zichzelf staat. Als bewegingswetenschapper en sportfysiotherapeut kijk ik naar het totaalplaatje: hoe stuurt je brein je spieren aan (Neurokinetische Therapie)? Waar zit spanning in het bindweefsel (Fascia)? En heeft je lichaam op celniveau wel de bouwstoffen om te herstellen?',
+        'Toon hier 3 tot 6 kaarten naar de bestaande kennisblogs (Laaggradige ontsteking, Slaap en herstel, Ademhaling en hoofdpijn, Voeding en maaltijdfrequentie, Magnesium bij hardlopers, Omega 3 voor herstel, Trainen voor de marathon) gevolgd door echte klantrecensies over NKT, loopscholing en hooikoorts-taping.',
       ],
-      bulletPoints: [
-        '01. Volledige 1-op-1 aandacht: Ruime behandeltijden zonder haast of dubbele afspraken.',
-        '02. Oorzaakgericht ketenonderzoek: Wij behandelen de bron van de compensatie, niet enkel het symptoom.',
-        '03. Direct toepasbaar in je sport: Van de behandelbank direct doorpakken naar verantwoorde kracht- of looptraining.',
-      ],
-      ctaText: 'Meer over Dorien & mijn werkwijze',
+      ctaText: 'Maak kennis met Dorien & Michaël',
       ctaTargetPage: 'over',
-      imageAdvice:
-        'Portret van Dorien in de praktijkruimte in Amersfoort Calveen/Nieuwland, recht in de camera kijkend met een open, energieke glimlach.',
-    },
-    {
-      id: 'home-5',
-      sectionNumber: 'Blok 1.5',
-      sectionName: 'Veelgestelde Vragen (GEO / AI-Vindbaarheid Blok)',
-      jouwWebElement: 'Uitklapmenu (Accordion / FAQ-element van JouwWeb)',
-      strategicGoal:
-        'Cruciaal voor Google Featured Snippets én AI-zoekmachines (ChatGPT, Gemini, Perplexity) wanneer gezocht wordt op chronische blessures, loopanalyse en vitaliteit in Amersfoort.',
-      headline: 'Veelgestelde vragen over oorzaakgericht herstel, duursport en vitaliteit',
-      bodyCopy: [
-        'Gebruik hier het standaard Uitklapmenu-element van JouwWeb en plaats de 5 kernvragen over niet-herstellende blessures, Omega-3/celgezondheid, het Vitaliteitstraject, hardloopanalyse en vergoedingen.',
-      ],
-      ctaText: 'Staat je vraag er niet tussen? Neem contact op',
-      ctaTargetPage: 'contact',
-      imageAdvice: 'Geen afbeelding nodig (houd dit blok rustig en tekstueel scanbaar met veel witruimte).',
+      imageAdvice: 'Sfeerbeelden passend bij slaap, hardlopen en ademhaling.',
     },
   ],
   fysio: [
     {
       id: 'fysio-1',
       sectionNumber: 'Blok 2.1',
-      sectionName: 'Hero: Visie op Langdurige & Terugkerende Klachten',
-      jouwWebElement: 'Strook met achtergrondafbeelding + Korte introductietekst',
+      sectionName: 'Hero: Langdurige Klachten, Fysio, Manuele Therapie & NKT',
+      jouwWebElement: 'Strook met achtergrondafbeelding + Introductietekst',
       strategicGoal:
-        'Spreek direct de mensen aan die gefrustreerd zijn omdat hun rug-, nek-, schouder- of sportklacht telkens terugkomt.',
-      headline: 'Waarom jouw klacht steeds terugkomt — en hoe we die cirkel wél doorbreken.',
+        'Positioneer de unieke combinatie van Dorien (NKT, Fascia, Sportfysio) en Michaël (Master Manueel Therapeut MSc & Pijn-neurofysiologie).',
+      headline: 'Waarom ontstaan klachten en waarom herstellen ze soms niet vanzelf?',
       subheadline:
-        'Oorzaakgerichte Fysiotherapie & Sportfysiotherapie in Amersfoort Nieuwland & Calveen.',
+        'Oorzaakgerichte Fysiotherapie, Master Manuele Therapie MSc & Neurokinetische Therapie (NKT) in Amersfoort.',
       bodyCopy: [
-        'Heb je het gevoel dat je alles al hebt geprobeerd? Rust gehouden, oefeningen gedaan, lokaal laten behandelen — en toch speelt die achillespees, onderrug, nek of schouder telkens weer op zodra je het dagelijks leven of je sport oppakt?',
-        'De reden is simpel maar wordt vaak over het hoofd gezien: de plek waar je pijn ervaart, is vrijwel altijd het slachtoffer van een probleem elders in je lichaam. Zolang je alleen het slachtoffer behandelt, blijft de dader vrijuit gaan.',
+        'Loop je al lange tijd rond met rug-, nek-, schouder-, heup- of sportklachten? Bij Dorien Janse en Michaël Kornmann onderzoeken we niet alleen de pijnlijke plek, maar kijken we naar de volledige bewegingsketen én de biologische en fysiologische processen achter pijnervaring.',
+        'Ons doel is om de daadwerkelijke blokkade op te heffen, je met positivisme weer vertrouwen te geven in je eigen lichaam en je zelfredzaam te maken — zodat je niet afhankelijk wordt van zorg.',
       ],
-      ctaText: 'Plan een oorzaakgerichte intake',
+      ctaText: 'Plan jouw intake (€ 68,- of via aanvullende verzekering)',
       ctaTargetPage: 'contact',
-      imageAdvice:
-        'Rustige, professionele foto van een diagnostisch ketenonderzoek in de behandelkamer.',
+      imageAdvice: 'Foto van hands-on behandeling in een van de behandelkamers (16 m²) aan de Ruimtesonde 7.',
     },
     {
       id: 'fysio-2',
       sectionNumber: 'Blok 2.2',
-      sectionName: 'Specialistische Behandelmethoden (De Gereedschapskist)',
-      jouwWebElement: 'Kolommen (2x of 3x) met duidelijke subkoppen',
+      sectionName: 'Onze Behandelmethoden & Specialisaties',
+      jouwWebElement: 'Kolommen (2x of 3x)',
       strategicGoal:
-        'Behoud alle bestaande behandelvormen van dorienjanse.nl, maar leg ze uit vanuit het resultaat voor de cliënt in plaats van droge medische definities.',
-      headline: 'Een integrale gereedschapskist voor complex herstel',
-      subheadline: 'Geen losse kunstjes, maar precies de combinatie die jouw lichaam nodig heeft om weer vrij te bewegen.',
+        'Behoud en verduidelijk alle specialistische behandelvormen inclusief NKT, Manuele Therapie MSc, Fasciatherapie, Dry Needling, Ademhaling, Sportmassage en Hooikoorts-taping.',
+      headline: 'Specialistische zorg afgestemd op jouw lichaam',
       bodyCopy: [
-        '1. Neurokinetische Therapie (NKT): Ons brein slaat bewegingspatronen op in het motorisch controlecentrum. Na een oude blessure, val of operatie (zelfs jaren geleden!) kan een spier "uitgeschakeld" blijven, waardoor andere spieren overuren draaien. Met NKT sporen we deze foutieve aansturing via specifieke spiertesten op en "resetten" we de samenwerking tussen brein en spier.',
-        '2. Fasciatherapie & Bindweefselbehandeling: Al je spieren, gewrichten en organen zijn verbonden via één doorlopend driedimensionaal netwerk van bindweefsel (fascia). Verklevingen of verhoogde spanning op de ene plek trekken letterlijk aan structuren verderop in de keten. Door de fasciale glijlagen vrij te maken, verdwijnt trekkende pijn en krijg je direct meer bewegingsvrijheid.',
-        '3. Sportfysiotherapie MSc & Manuele Technieken: Specifieke analyse van sportbelasting, gewrichtsmobilisaties en opbouwschema’s waarmee je niet alleen klachtenvrij wordt in rust, maar ook weer bestand bent tegen piekbelasting.',
-        '4. Dry Needling & Sportmassage: Met een flinterdun naaldje ontspannen we diepliggende myofasciale triggerpoints (spierknopen) direct. Gecombineerd met gerichte sportmassage zorgt dit voor snelle pijnverlichting en betere doorbloeding, zodat we daarna direct de juiste aansturing kunnen intrainen.',
+        '1. Neurokinetische Therapie (NKT): Dorien is de enige gecertificeerde NKT-fysiotherapeut in Amersfoort. Met NKT sporen we verstoorde aansturingspatronen tussen brein en spieren op die vaak zijn ontstaan na oude blessures of littekens.',
+        '2. Master Manuele Therapie (MSc) & Neurofysiologie van Pijn: Michaël Kornmann is gespecialiseerd in complexe gewrichts- en wervelkolomklachten en legt helder uit hoe het pijnsysteem werkt, zodat je weer vrij en vol vertrouwen durft te bewegen.',
+        '3. Fasciatherapie & Dry Needling: Zowel Dorien als Michaël zetten Dry Needling en myofasciale technieken in om diepliggende spierknopen (triggerpoints) en bindweefselverklevingen direct te ontspannen.',
+        '4. Ademhalingstherapie, Medical Taping & Hooikoorts Taping: Van ademhalingsregulatie bij hoofdpijn en spanning tot ondersteunend tapen na een zweepslag/enkelverzwikking (€ 15,-) en effectieve hooikoorts-taping (2x intapen incl. tape voor € 32,-).',
       ],
-      ctaText: 'Bespreek jouw klacht met Dorien',
+      ctaText: 'Stel je vraag of maak een afspraak',
       ctaTargetPage: 'contact',
-      imageAdvice:
-        'Detailfoto van hands-on fasciatherapie of neurokinetisch testen bij een sporter.',
+      imageAdvice: 'Close-up van NKT-spiertest, manuele mobilisatie of medical taping.',
     },
   ],
   vitaliteit: [
     {
       id: 'vit-1',
       sectionNumber: 'Blok 3.1',
-      sectionName: 'Hero: Het Vitaliteitstraject (Kroonjuweel)',
-      jouwWebElement: 'Strook met warme achtergrondafbeelding + Introductie',
+      sectionName: 'Hero: Het Vitaliteitstraject (Ook online mogelijk)',
+      jouwWebElement: 'Strook met afbeelding + Introductie',
       strategicGoal:
-        'Positioneer het Vitaliteitstraject als dé premium investering voor mensen die structureel meer energie, sneller fysiek herstel en gezonde cellen willen.',
-      headline: 'Het Vitaliteitstraject: Duurzame energie en herstel beginnen op celniveau.',
+        'Focus op het totale herstelvermogen, de balans tussen belasting en belastbaarheid en het vinden van de oorzaak achter aanhoudende klachten.',
+      headline: 'Het Vitaliteitstraject: Herstel de balans tussen belasting en belastbaarheid.',
       subheadline:
-        'Persoonlijke leefstijlcoaching, herstelanalyse en Omega-3 celgezondheid in Amersfoort.',
+        'Persoonlijke vitaliteitscoaching in Amersfoort (of online) voor blijvende energie en een sterk herstelvermogen.',
       bodyCopy: [
-        'Voel je je vaker moe dan je lief is? Duurt het dagen voordat je hersteld bent van een drukke werkweek of een stevige training? Of blijven pees- en spierklachten maar sluimeren ondanks goede oefeningen?',
-        'In mijn praktijk zie ik dagelijks dat fysieke klachten en vermoeidheid twee kanten van dezelfde medaille zijn. Daarom heb ik het Vitaliteitstraject ontwikkeld: een diepgaand, wetenschappelijk onderbouwd traject waarin we jouw fysiologie, celgezondheid en leefstijl stap voor stap optimaliseren.',
+        'Blijven fysieke klachten steeds terugkeren of merk je dat je energie en herstelvermogen tekortschieten? Vaak houden verschillende factoren elkaar onderhuids in stand: een verstoorde balans tussen belasting en belastbaarheid, oppervlakkige ademhaling, onrustige slaap, stress, voeding, een overprikkeld immuunsysteem (laaggradige ontstekingen) of diep ingesleten gedragspatronen.',
+        'In het Vitaliteitstraject brengen we al deze pijlers rustig en grondig in kaart. Je krijgt inzicht in waarom jouw lichaam op de rem trapt én een haalbaar, persoonlijk stappenplan (waarbij we waar passend ook kijken naar gerichte ondersteuning met voeding of supplementen zoals magnesium of Omega-3).',
       ],
-      ctaText: 'Vraag een Vitaliteits-kennismaking aan',
+      ctaText: 'Kies jouw Vitaliteitspakket',
       ctaTargetPage: 'contact',
-      imageAdvice:
-        'Sfeervolle foto van het vitaliteitsconsult: natuurlijke materialen, Omega-3 balans-analyse, rust en aandacht.',
+      imageAdvice: 'Warme, uitnodigende foto van een 1-op-1 vitaliteitsintake.',
     },
     {
       id: 'vit-2',
       sectionNumber: 'Blok 3.2',
-      sectionName: 'Celgezondheid & De Omega-3 Vetzurentest (Meten = Weten)',
-      jouwWebElement: 'Tekst + Afbeelding (2 Kolommen) + Opsomming',
+      sectionName: 'De 3 Vitaliteitspakketten (Basis Fit, Lekker Fit, Premium Fit)',
+      jouwWebElement: 'Kolommen (3x) met Pakketoverzicht',
       strategicGoal:
-        'Leg helder en feitelijk (GEO-proof) uit waarom Omega-3 en celgezondheid essentieel zijn voor spier-/peesherstel en energie.',
-      headline: 'Waarom we starten met meten: jouw Omega-6 / Omega-3 balans en celgezondheid.',
-      subheadline: 'Zonder gezonde celwanden en ontstekingsremming kan geen enkel weefsel optimaal herstellen.',
+        'Presenteer de exacte pakketten en tarieven helder en overzichtelijk, met Pakket C (Premium Fit) als meest gekozen optie.',
+      headline: 'Overzichtelijke pakketten op maat van jouw doel',
+      subheadline: 'Zowel op de praktijk aan de Ruimtesonde 7 als volledig online te volgen.',
       bodyCopy: [
-        'Elke cel in je lichaam heeft een celwand die bepaalt hoe makkelijk voedingsstoffen naar binnen kunnen en afvalstoffen naar buiten gaan. Door ons moderne voedingspatroon krijgen we vaak veel te veel Omega-6 vetzuren binnen (die ontstekingen stimuleren) en veel te weinig zuivere Omega-3 vetzuren (EPA en DHA, die ontstekingen juist remmen en oplossen).',
-        'Wanneer deze verhouding boven de 3:1 ligt, verkeert je lichaam in een toestand van "laaggradige ontsteking". Het gevolg? Pezen blijven geïrriteerd, spieren herstellen traag na het sporten, en je ervaart een constante waas van vermoeidheid. Met een eenvoudige, onafhankelijke vingerprik-bloedtest meten we jouw exacte waarden, waarna we met hoogwaardige suppletie en voedingsadvies gericht bijsturen en na 120 dagen opnieuw testen.',
+        'Pakket A – Basis Fit (€ 130,-): Uitgebreide analyse-vragenlijst vooraf + Intake van 1 uur + Heldere uitleg en een persoonlijk plan van aanpak.',
+        'Pakket B – Lekker Fit (€ 220,-): Alles uit Basis Fit + 1 vervolgconsult ter evaluatie en bijsturing na 4 weken.',
+        'Pakket C – Premium Fit (€ 370,- | Meest gekozen voor blijvende verandering): Alles uit Basis Fit + 3 vervolgconsulten ter evaluatie na 4, 8 en 12 weken, zodat nieuwe gewoontes écht beklijven.',
       ],
-      bulletPoints: [
-        'Objectieve laboratorium-bloedtest (droge bloedspot) naar 11 vetzuren in je celmembraan',
-        'Gerichte aanpak van laaggradige ontstekingen bij chronische pees- of gewrichtsklachten',
-        'Integrale coaching op de 5 vitaliteitspijlers: Voeding & Celgezondheid, Slaap & Herstel, Ademhaling & Zenuwstelsel, Stressregulatie en Natuurlijk Bewegen',
-      ],
-      ctaText: 'Plan een Vitaliteitscheck & Vetzurentest',
+      ctaText: 'Meld je aan voor het Vitaliteitstraject',
       ctaTargetPage: 'contact',
-      imageAdvice:
-        'Heldere infographic of foto van het testpakket en de 5 pijlers van vitaliteit.',
+      imageAdvice: 'Overzichtelijke weergave van de 3 pakketten met duidelijke vinkjes.',
     },
   ],
   duursport: [
     {
       id: 'duur-1',
       sectionNumber: 'Blok 4.1',
-      sectionName: 'Hero: Hardlopen, Wielrennen & Gerichte Training',
-      jouwWebElement: 'Strook met dynamische sportfoto + Introductie',
+      sectionName: 'Hero: Hardloopfysiotherapie, Wielrennen, PT & Running Bootcamp',
+      jouwWebElement: 'Strook met sportfoto + Introductie',
       strategicGoal:
-        'Spreek de taal van de ambitieuze hardloper en wielrenner in Amersfoort die zijn prestaties wil verbeteren en blessurevrij wil doortrainen.',
-      headline: 'Slimmer trainen, efficiënter bewegen en pijnvrij presteren.',
+        'Benadruk dat zowel Dorien als Michaël zelf fanatieke hardlopers en wielrenners zijn (AV Triathlon Amersfoort) en de geblesseerde duursporter van binnenuit begrijpen.',
+      headline: 'Door duursporters, voor duursporters: pijnvrij hardlopen, wielrennen en kracht opbouwen.',
       subheadline:
-        'Hardloopanalyse, Wielren-specifieke Krachttraining, Personal Training & Bootcamp in Amersfoort Nieuwland.',
+        'Hardloopfysiotherapie (videoanalyse buiten én op de loopband), Personal Training & Running Bootcamp in Amersfoort Nieuwland.',
       bodyCopy: [
-        'Als duursporter vraag je veel van je lichaam. Of je nu traint voor je eerste 10 kilometer, een marathon op de Utrechtse Heuvelrug of lange toertochten op de racefiets of gravelbike: duursport betekent duizenden keren dezelfde beweging herhalen.',
-        'Een kleine inefficiëntie in je looptechniek of een onbalans in je romp- en heupstabiliteit op de fiets leidt daardoor al snel tot een lopersknie, achillespeesklacht, shin splints of zeurende onderrug. Als bewegingswetenschapper, sportfysiotherapeut én trainer help ik je niet door je te verbieden om te sporten, maar door je bewegingspatroon en belastbaarheid fundamenteel sterker te maken.',
+        'Zowel Dorien (voormalig fanatiek schaatsster en wielrenster op landelijk niveau, nu marathonloopster) als Michaël (Hardloopfysiotherapeut BLT3, hardlooptrainer bij AV Triathlon, wielrenner en fitnesser) kennen de passie én de frustratie van een duursportblessure uit eigen ervaring.',
+        'Wij helpen hardlopers, ultralopers en wielrenners niet met het advies om "maar te stoppen met sporten", maar analyseren je techniek en belastbaarheid zodat je sterker terugkomt.',
       ],
-      ctaText: 'Boek jouw Loopanalyse of Sport-intake',
+      ctaText: 'Boek het Hardloopfysiotherapie pakket of een gratis proefles Bootcamp',
       ctaTargetPage: 'contact',
-      imageAdvice:
-        'Energieke buitenfoto van hardlopen of wielrennen in het groen rond Amersfoort.',
+      imageAdvice: 'Actiefoto van video-loopanalyse op de loopband in de oefenzaal én buiten in Amersfoort.',
     },
     {
       id: 'duur-2',
       sectionNumber: 'Blok 4.2',
-      sectionName: 'Het Aanbod voor Sporters & Actieve Genieters',
+      sectionName: 'Het Specifieke Sport- & Trainingsaanbod',
       jouwWebElement: 'Kolommen (2x2 Grid)',
       strategicGoal:
-        'Groepeer Hardloopbegeleiding/Loopanalyse, Wielrennen, Personal Training (1:1 / Small Group) en Bootcamp Nieuwland overzichtelijk op één pagina.',
-      headline: 'Kies de trainingsvorm die past bij jouw doel',
+        'Exacte weergave van het Hardloopfysiotherapie pakket (€ 290,-), Running Bootcamp (ma/do gemengd, vr vrouwen & Moeder/Kind) en Personal Training / Small Group.',
+      headline: 'Gerichte begeleiding voor jouw sportieve doel',
       bodyCopy: [
-        '1. Hardloopbegeleiding & Video-Loopanalyse: We analyseren je loopstijl op video (cadans, grondcontacttijd, voetplaatsing, heup- en rompcontrole) en combineren dit met een fysieke ketencheck. Je krijgt direct toepasbare techniekaanwijzingen en gerichte oefeningen voor een hogere loopeconomie.',
-        '2. Specifieke Kracht & Mobiliteit voor Wielrenners: Op de fiets zit je urenlang in een gebogen ketenpositie. Wij trainen gerichte core-stability, heupstrekking en schouder-/nekontspanning zodat je meer wattage trapt zonder rug- of nekklachten.',
-        '3. Personal Training (1-op-1 of Duo): Trainen onder begeleiding van een bewegingswetenschapper en sportfysio. Ideaal als je na een blessure veilig wilt opbouwen, functioneel sterker wilt worden voor je sport, of stok-achter-de-deur begeleiding zoekt op maat.',
-        '4. Bootcamp Amersfoort Nieuwland: Buiten trainen in een motiverende, gezellige groep in Amersfoort Nieuwland. Elke woensdagochtend (09:00 - 10:00 uur) werken we aan kracht, conditie en coördinatie, met altijd professionele oog voor jouw houding en eventuele blessuregevoeligheid.',
+        '1. Hardloopfysiotherapie pakket (4x – € 290,-): Bestaat uit een uitgebreide intake van 1 uur, videoanalyse van je loopstijl (zowel buiten als op de loopband) + 3 gerichte trainingen van 45 minuten gericht op loopscholing, techniek en kracht.',
+        '2. Running Bootcamp Amersfoort Nieuwland (Gratis proefles!): Buiten trainen met veel aandacht voor looptechniek en kracht. Op maandag en donderdag voor mannen & vrouwen; op vrijdag speciaal voor vrouwen (ook Moeder & Kind bootcamp mogelijk). Keuze uit knipkaart (10x € 100,-), 3-maanden- of jaarabonnement.',
+        '3. Personal Training (1:1) & Small Group (max. 4 pers.): Individuele intake (€ 75,-), PT van 30 min (€ 50,-) of 45 min (€ 75,-), of train samen in een Small Group van maximaal 4 personen (knipkaart 10x 30 min voor € 185,-). Ook een knipkaart voor 12x zelfstandig trainen in onze oefenzaal (€ 85,-) is mogelijk.',
+        '4. Sportmassage (Ook als cadeaubon!): Voor optimaal spierherstel bij zware trainingsblokken: 30 minuten (€ 39,-), 45 minuten (€ 58,50) of een voordelige knipkaart van 10x 30 minuten (€ 375,-).',
       ],
-      ctaText: 'Meld je aan voor Loopanalyse, PT of Proefles Bootcamp',
+      ctaText: 'Meld je aan voor Loopanalyse, PT of Gratis Proefles Bootcamp',
       ctaTargetPage: 'contact',
-      imageAdvice:
-        'Combinatie van een screenshot/foto van een video-loopanalyse en een vrolijke buitenfoto van de Bootcampgroep in Nieuwland.',
+      imageAdvice: 'Foto van de oefenzaal (65 m²) met loopband en krachtapparatuur + buitenfoto Running Bootcamp.',
     },
   ],
   over: [
     {
       id: 'over-1',
       sectionNumber: 'Blok 5.1',
-      sectionName: 'Over Dorien Janse & Haar Visie',
-      jouwWebElement: 'Tekst + Afbeelding (Grote portretfoto links, verhaal rechts)',
+      sectionName: 'Ons Team: Dorien Janse & Michaël Kornmann',
+      jouwWebElement: '2 Kolommen met Portretfoto, Biografie, Specialisaties en BIG-nummers',
       strategicGoal:
-        'Persoonlijke verbinding en autoriteit opbouwen: laat zien waarom de combinatie van Bewegingswetenschappen, Fysiotherapie en Vitaliteit uniek is in Amersfoort.',
-      headline: 'Hoi, ik ben Dorien Janse — nieuwsgierig naar hoe jouw lichaam écht werkt.',
+        'Presenteer zowel Dorien als Michaël uitgebreid met hun exacte achtergrond, sportverleden bij AV Triathlon en BIG/AGB-registraties.',
+      headline: 'Maak kennis met ons team aan de Ruimtesonde 7',
       subheadline:
-        'Bewegingswetenschapper, Sportfysiotherapeut MSc, Trainer & Vitaliteitscoach in Amersfoort.',
+        'Twee bevlogen specialisten en duursporters met één gezamenlijk doel: jou duurzaam en zelfredzaam laten herstellen.',
       bodyCopy: [
-        'Mijn passie voor het menselijk lichaam begon vanuit een dubbele fascinatie: hoe haalt een sporter het maximale uit zijn beweging, en waarom herstelt het ene lichaam moeiteloos terwijl het andere blijft vastlopen in pijn of vermoeidheid?',
-        'Na mijn studie Bewegingswetenschappen en Fysiotherapie (gevolgd door de master Sportfysiotherapie) merkte ik in de reguliere praktijk dat 20 minuten behandeltijd simpelweg te kort is om complexe, langdurige klachten echt bij de wortel aan te pakken. Daarom koos ik voor een eigen, onafhankelijke praktijk aan de Ruimtesonde 7 in Amersfoort Calveen/Nieuwland.',
-        'Hier heb ik alle ruimte om verder te kijken. Ik combineer biomechanica, Neurokinetische Therapie, Fasciatherapie en Dry Needling met inzichten uit de leefstijlgeneeskunde en celgezondheid (zoals de Omega-3 vetzurenbalans). Want pas als je aansturing, je weefsel én je interne herstelvermogen kloppen, ontstaat resultaat dat blijft.',
+        'Dorien Janse (Sportfysiotherapeut, Bewegingswetenschapper, Vitaliteitscoach & Trainer | BIG 59064209704 | AGB 4108710): Startte in 2015 haar eigen praktijk na 10 jaar ervaring in een grote praktijk. Als enige NKT-gecertificeerde fysio in Amersfoort combineert zij Neurokinetische Therapie, Fasciatherapie, Dry Needling, Ademhaling, Looptechniek en Vitaliteitscoaching.',
+        'Michaël Kornmann (Fysiotherapeut, Master Manueel Therapeut MSc & Hardloopfysiotherapeut BLT3 | BIG 89920543304 | michael@dorienjanse.nl): Werkzaam als fysiotherapeut sinds 2016, gespecialiseerd in Dry Needling en sinds 2020 Master Musculoskeletaal Manueel Therapeut. Werkt sinds begin 2025 samen met Dorien en is expert in sportklachten en de neurofysiologie van pijn.',
       ],
-      ctaText: 'Kom kennismaken aan de Ruimtesonde 7',
+      ctaText: 'Plan een afspraak bij Dorien of Michaël',
       ctaTargetPage: 'contact',
-      imageAdvice:
-        'Authentieke portretfoto van Dorien in haar praktijk aan de Ruimtesonde 7, warm en benaderbaar.',
+      imageAdvice: 'Twee professionele, toegankelijke portretfoto’s van Dorien Janse en Michaël Kornmann.',
     },
     {
       id: 'over-2',
       sectionNumber: 'Blok 5.2',
-      sectionName: 'Werkwijze, Tarieven & Vergoedingen',
-      jouwWebElement: 'Tabel-element of 2 Overzichtelijke Tekstkolommen',
+      sectionName: 'Officiële Tarieven 2026 & Vergoedingen Zorgverzekeraars',
+      jouwWebElement: 'Tabel-elementen per categorie (Vitaliteit, Fysio/Manueel, PT/Bootcamp, Sportmassage)',
       strategicGoal:
-        'Transparante communicatie over contractvrij werken (meer tijd, sneller resultaat) en heldere weergave van alle tarieven.',
-      headline: 'Transparante tarieven & bewust tijd voor kwaliteit',
+        'Volledige transparantie over gecontracteerde zorgverzekeraars en de exacte tarieven voor 2026.',
+      headline: 'Tarieven & Vergoedingen',
       subheadline:
-        'Waarom ik contractvrij werk en hoe de vergoeding via je zorgverzekeraar werkt.',
+        'Vergoeding vanuit de aanvullende verzekering bij gecontracteerde zorgverzekeraars.',
       bodyCopy: [
-        'Om de tijd, rust en diagnostische diepgang te bieden die nodig zijn bij langdurige klachten, werk ik bewust zonder contracten met zorgverzekeraars. Hierdoor ben ik niet gebonden aan standaardprotocollen of korte sessies, en hebben we vaak aanzienlijk minder behandelingen nodig voor een blijvend resultaat.',
-        'Na afloop van een fysiotherapeutische behandeling ontvang je de factuur per e-mail. Deze kun je zelf indienen bij je zorgverzekeraar. Heb je een aanvullende verzekering voor fysiotherapie? Dan krijg je — afhankelijk van je polis — doorgaans tussen de 60% en 100% van het marktconforme tarief vergoed.',
+        'Wij hebben contracten met het merendeel van de Nederlandse zorgverzekeraars (vergoeding vanuit je aanvullende verzekering). Let op: wij hebben géén contract met CZ groep (Nationale Nederlanden, Ohra), Caresq, Zorg&Zekerheid, ASR en ENO.',
+        'Plaats hier de 4 overzichtelijke tarieftabellen voor A. Vitaliteitstraject (€ 130 / € 220 / € 370), B. Fysiotherapie & Manuele Therapie (Intake € 68, Consult Fysio € 45, Manueel € 56, Plus consult € 68, Hardlooppakket 4x € 290), C. Personal Training & Running Bootcamp en D. Sportmassage (€ 39 / € 58,50).',
       ],
-      bulletPoints: [
-        'Intake, onderzoek & behandeling Fysiotherapie / Sportfysio (60 min): € 92,00',
-        'Vervolgbehandeling Fysiotherapie / NKT / Fascia (45 min): € 72,50',
-        'Sportmassage / Herstelbehandeling (30 / 45 / 60 min): vanaf € 42,50',
-        'Vitaliteitstraject & Omega-3 Balanstest (incl. laboratoriumanalyse & coaching): Op maat na intake',
-        'Personal Training (1:1, 60 min): € 75,00 (of voordelige 10-rittenkaart)',
-        'Bootcamp Amersfoort Nieuwland (woensdag 09:00): € 10,50 per losse les of 10-rittenkaart (€ 95,00)',
-      ],
-      ctaText: 'Vragen over tarieven of vergoeding? Stuur een bericht',
+      ctaText: 'Neem contact op bij vragen over je vergoeding',
       ctaTargetPage: 'contact',
-      imageAdvice: 'Geen foto nodig, gebruik een rustig kader met veel witruimte.',
+      imageAdvice: 'Geen afbeelding nodig; houd de tabellen rustig en overzichtelijk.',
     },
   ],
   contact: [
     {
       id: 'contact-1',
       sectionNumber: 'Blok 6.1',
-      sectionName: 'Contactgegevens, Praktijklocatie & Afspraakformulier',
-      jouwWebElement: 'Kolommen (2x): Links Contactgegevens & Kaart, Rechts JouwWeb Formulier',
+      sectionName: 'Contactgegevens, Openingstijden, Praktijkverhuur & Afspraakformulier',
+      jouwWebElement: 'Kolommen (2x): Links Contact, Openingstijden & Verhuur, Rechts Formulier & Kaart',
       strategicGoal:
-        'Laagdrempelige conversie (intake plannen of WhatsApp sturen) + sterke lokale SEO-signalen voor Amersfoort Nieuwland, Calveen, Hoogland en Vathorst.',
-      headline: 'Zet vandaag de eerste stap naar een pijnvrij en energiek lichaam.',
+        'Exacte contactgegevens (06-14184448, info@dorienjanse.nl, michael@dorienjanse.nl), openingstijden, AGB/KvK-nummers én informatie over verhuur van behandelkamers, groepsruimte en oefenzaal.',
+      headline: 'Contact & Afspraak Maken',
       subheadline:
-        'Praktijk aan de Ruimtesonde 7 in Amersfoort (Calveen / Nieuwland) — gratis parkeren voor de deur.',
+        'Dorien Janse – Persoonlijke Fysio, Training & Vitaliteit | Ruimtesonde 7, 3824 MZ Amersfoort',
       bodyCopy: [
-        'Wil je een afspraak maken voor fysiotherapie, een hardloopanalyse inplannen, of vrijblijvend sparren of het Vitaliteitstraject bij jouw situatie past? Vul het formulier in of stuur direct een WhatsApp-bericht naar 06 - 24 72 28 54.',
-        'De praktijk is gevestigd aan de Ruimtesonde 7 (3824 MZ Amersfoort) op bedrijventerrein Calveen, direct op de grens met Amersfoort Nieuwland, Hoogland en Vathorst. Je parkeert gratis direct voor de deur.',
+        'Wil je een afspraak inplannen bij Dorien of Michaël, starten met het Vitaliteitstraject of meedoen met een gratis proefles Running Bootcamp? Bel of WhatsApp naar 06-14184448 of stuur een e-mail.',
+        'Samenwerking & Verhuur praktijkruimte: Op de 1e verdieping van Ruimtesonde 7 zijn behandelkamers (16 m²), een cursus-/groepsruimte voor o.a. yoga, pilates of mindfulness (31 m²) en een compleet ingerichte oefenzaal (65 m²) per dagdeel te huur voor (para)medici en personal trainers.',
       ],
       bulletPoints: [
-        'Adres: Ruimtesonde 7, 3824 MZ Amersfoort (Calveen / Nieuwland)',
-        'Telefoon & WhatsApp: 06 - 24 72 28 54',
-        'E-mail: info@dorienjanse.nl',
-        'Geen verwijsbrief van de huisarts nodig',
+        'Adres: Ruimtesonde 7, 3824 MZ Amersfoort (Nieuwland / Calveen)',
+        'Telefoon & WhatsApp: 06-14184448',
+        'E-mail algemeen / Dorien: info@dorienjanse.nl | E-mail Michaël: michael@dorienjanse.nl',
+        'Openingstijden: Ma 09.00-16.00 | Di 08.00-16.00 | Wo 08.00-16.00 | Do 08.00-17.00 | Vr op afspraak',
+        'Praktijk AGB: 4094632 | KvK: 64964744 | BIG Dorien: 59064209704 | BIG Michaël: 89920543304',
       ],
-      ctaText: 'Verstuur aanvraag',
+      ctaText: 'Verstuur bericht',
       imageAdvice:
-        'JouwWeb Kaart-element ingesteld op Ruimtesonde 7, 3824 MZ Amersfoort + foto van de praktijkruimte.',
+        'JouwWeb Kaart-element op Ruimtesonde 7, 3824 MZ Amersfoort + foto’s van de behandelkamer (16 m²), groepsruimte (31 m²) en oefenzaal (65 m²).',
     },
   ],
 };
@@ -525,13 +858,17 @@ export const JSON_LD_SCHEMA_STRING = `<script type="application/ld+json">
     {
       "@type": ["MedicalBusiness", "PhysicalTherapy", "HealthAndBeautyBusiness"],
       "@id": "https://www.dorienjanse.nl/#organization",
-      "name": "Dorien Janse - Personal Fysio, Training & Vitaliteit",
-      "alternateName": "Fysiotherapie & Vitaliteit Dorien Janse Amersfoort",
+      "name": "Dorien Janse – Persoonlijke Fysio, Training & Vitaliteit",
       "url": "https://www.dorienjanse.nl",
-      "telephone": "+31624722854",
+      "telephone": "+31614184448",
       "email": "info@dorienjanse.nl",
+      "taxID": "64964744",
+      "identifier": [
+        { "@type": "PropertyValue", "name": "Praktijk AGB-code", "value": "4094632" },
+        { "@type": "PropertyValue", "name": "KvK-nummer", "value": "64964744" }
+      ],
       "priceRange": "€€",
-      "description": "Praktijk voor oorzaakgerichte sportfysiotherapie, bewegingswetenschappen, vitaliteitscoaching (celgezondheid & Omega-3) en duursportbegeleiding (hardlopen & wielrennen) in Amersfoort Nieuwland/Calveen.",
+      "description": "Praktijk voor persoonlijke fysiotherapie, sportfysiotherapie, Master Manuele Therapie MSc, Neurokinetische Therapie (NKT), vitaliteitscoaching, hardloopfysiotherapie en Running Bootcamp aan Ruimtesonde 7 in Amersfoort (Nieuwland/Calveen).",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Ruimtesonde 7",
@@ -545,6 +882,12 @@ export const JSON_LD_SCHEMA_STRING = `<script type="application/ld+json">
         "latitude": 52.1928,
         "longitude": 5.3789
       },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "09:00", "closes": "16:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Tuesday", "opens": "08:00", "closes": "16:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "08:00", "closes": "16:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday", "opens": "08:00", "closes": "17:00" }
+      ],
       "areaServed": [
         { "@type": "City", "name": "Amersfoort" },
         { "@type": "Place", "name": "Amersfoort Nieuwland" },
@@ -552,47 +895,81 @@ export const JSON_LD_SCHEMA_STRING = `<script type="application/ld+json">
         { "@type": "Place", "name": "Hoogland" },
         { "@type": "Place", "name": "Vathorst" }
       ],
-      "founder": {
-        "@type": "Person",
-        "name": "Dorien Janse",
-        "jobTitle": "Sportfysiotherapeut MSc, Bewegingswetenschapper, Trainer & Vitaliteitscoach",
-        "knowsAbout": [
-          "Sportfysiotherapie",
-          "Bewegingswetenschappen",
-          "Neurokinetische Therapie (NKT)",
-          "Fasciatherapie",
-          "Dry Needling",
-          "Vitaliteitscoaching en Celgezondheid (Omega-3 vetzurenbalans)",
-          "Hardloopanalyse en Wielrenbelasting"
-        ]
-      },
+      "employee": [
+        {
+          "@type": "Person",
+          "name": "Dorien Janse",
+          "jobTitle": "Sportfysiotherapeut, Bewegingswetenschapper, Vitaliteitscoach & Trainer",
+          "email": "info@dorienjanse.nl",
+          "identifier": [
+            { "@type": "PropertyValue", "name": "BIG-nummer", "value": "59064209704" },
+            { "@type": "PropertyValue", "name": "AGB-code", "value": "4108710" }
+          ],
+          "knowsAbout": [
+            "Sportfysiotherapie",
+            "Bewegingswetenschappen",
+            "Neurokinetische Therapie (NKT)",
+            "Fasciatherapie",
+            "Dry Needling",
+            "Ademhaling en Vitaliteitscoaching",
+            "Hardloopanalyse en Looptechniek"
+          ]
+        },
+        {
+          "@type": "Person",
+          "name": "Michaël Kornmann",
+          "jobTitle": "Fysiotherapeut, Master Manueel Therapeut MSc & Hardloopfysiotherapeut BLT3",
+          "email": "michael@dorienjanse.nl",
+          "identifier": [
+            { "@type": "PropertyValue", "name": "BIG-nummer", "value": "89920543304" }
+          ],
+          "knowsAbout": [
+            "Master Musculoskeletaal Manuele Therapie (MSc)",
+            "Hardloopfysiotherapie (BLT3)",
+            "Neurofysiologie van pijn",
+            "Dry Needling"
+          ]
+        }
+      ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Behandelingen & Trajecten",
+        "name": "Behandelingen, Vitaliteitspakketten & Trainingen",
         "itemListElement": [
           {
             "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Het Integrale Vitaliteitstraject & Omega-3 Celgezondheid",
-              "description": "Diepgaande leefstijlcoaching inclusief bloedwaardetest op Omega-6/Omega-3 balans, slaap, ademhaling en duurzaam herstelvermogen."
-            }
+            "name": "Vitaliteitstraject Pakket A – Basis Fit",
+            "price": "130.00",
+            "priceCurrency": "EUR"
           },
           {
             "@type": "Offer",
-            "itemOffered": {
-              "@type": "MedicalTherapy",
-              "name": "Oorzaakgerichte Sportfysiotherapie (NKT, Fascia & Dry Needling)",
-              "description": "Specialistische ketenanalyse en behandeling voor langdurige of terugkerende (sport)klachten die elders niet herstellen."
-            }
+            "name": "Vitaliteitstraject Pakket B – Lekker Fit",
+            "price": "220.00",
+            "priceCurrency": "EUR"
           },
           {
             "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Hardloopanalyse, Duursportbegeleiding & Personal Training",
-              "description": "Biomechanische video-loopanalyse, wielrenspecifieke krachttraining, 1-op-1 Personal Training en Bootcamp in Amersfoort Nieuwland."
-            }
+            "name": "Vitaliteitstraject Pakket C – Premium Fit",
+            "price": "370.00",
+            "priceCurrency": "EUR"
+          },
+          {
+            "@type": "Offer",
+            "name": "Hardloopfysiotherapie pakket (4x incl. videoanalyse buiten en op loopband)",
+            "price": "290.00",
+            "priceCurrency": "EUR"
+          },
+          {
+            "@type": "Offer",
+            "name": "Intake Fysiotherapie incl. 1e behandeling",
+            "price": "68.00",
+            "priceCurrency": "EUR"
+          },
+          {
+            "@type": "Offer",
+            "name": "Consult Manuele Therapie MSc",
+            "price": "56.00",
+            "priceCurrency": "EUR"
           }
         ]
       }
@@ -603,26 +980,26 @@ export const JSON_LD_SCHEMA_STRING = `<script type="application/ld+json">
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Waarom herstelt mijn hardloopblessure of langdurige klacht niet met rust of standaard oefeningen?",
+          "name": "Waarom herstelt een langdurige klacht of sportblessure soms niet vanzelf?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Omdat de plek waar je pijn voelt bijna nooit de daadwerkelijke oorzaak is. Met Neurokinetische Therapie (NKT) en Fasciatherapie sporen we de oorspronkelijke schakelfout in het zenuwstelsel en bindweefsel op, zodat het overbelaste weefsel eindelijk écht kan herstellen."
+            "text": "Omdat de plek waar je pijn voelt vaak compenseert voor een schakelfout elders in het lichaam. Dorien Janse (als enige fysio in Amersfoort gecertificeerd in Neurokinetische Therapie - NKT) en Michaël Kornmann (Master Manueel Therapeut MSc) sporen de achterliggende oorzaak op in je zenuwstelsel, gewrichten en bindweefsel."
           }
         },
         {
           "@type": "Question",
-          "name": "Wat is het verband tussen celgezondheid, Omega-3 vetzuren en het herstel van pees- of spierklachten?",
+          "name": "Wat houdt het Vitaliteitstraject (Basis Fit, Lekker Fit of Premium Fit) in?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Herstel van weefsel vraagt om een gecontroleerde ontstekingsreactie. Bij een verstoorde Omega-6/Omega-3 ratio (>3:1) blijven laaggradige ontstekingen actief en herstellen pezen en spieren traag. In het Vitaliteitstraject meten we je vetzurenstatus via een bloedtest en herstellen we je celgezondheid van binnenuit."
+            "text": "Het Vitaliteitstraject richt zich op je totale herstelvermogen en het vinden van de oorzaak achter aanhoudende klachten: de balans tussen belasting en belastbaarheid, slaap, ademhaling, voeding, stress, het immuunsysteem (laaggradige ontstekingen) en ingesleten patronen. Keuze uit Basis Fit (€ 130,-), Lekker Fit (€ 220,-) en Premium Fit (€ 370,-), zowel in de praktijk als online."
           }
         },
         {
           "@type": "Question",
-          "name": "Hoe helpt een biomechanische loopanalyse bij terugkerende knie-, scheenbeen- of achillespeesklachten?",
+          "name": "Wat zit er in het Hardloopfysiotherapie pakket (4x) bij Dorien en Michaël?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Als bewegingswetenschapper en sportfysiotherapeut analyseert Dorien Janse in Amersfoort je looppatroon op video (cadans, heupstabiliteit, voetlanding), koppelt dit aan een ketenonderzoek en vertaalt dit naar looptechniek-aanpassingen en gerichte krachttraining."
+            "text": "Het Hardloopfysiotherapie pakket (€ 290,-) bestaat uit een intake van 1 uur, videoanalyse (zowel buiten als op de loopband) en 3 gerichte trainingen van 45 minuten voor looptechniek, loopscholing en kracht."
           }
         }
       ]

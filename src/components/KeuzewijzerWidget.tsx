@@ -24,7 +24,7 @@ export const KeuzewijzerWidget: React.FC<KeuzewijzerWidgetProps> = ({ onNavigate
       <div className="max-w-7xl mx-auto px-6">
         <div className="max-w-3xl mb-10">
           <p className="text-xs font-medium text-[#5B6B63] mb-2">
-            Interactieve Zelfcheck · 3 vragen · Direct persoonlijk advies
+            Interactieve Zelfcheck · 3 vragen · Advies van Dorien Janse &amp; Michaël Kornmann
           </p>
           <h2
             id="keuzewijzer-heading"
@@ -33,7 +33,7 @@ export const KeuzewijzerWidget: React.FC<KeuzewijzerWidgetProps> = ({ onNavigate
             Welke aanpak brengt jouw lichaam het snelst vooruit?
           </h2>
           <p className="text-sm sm:text-base text-[#3F4E47] leading-relaxed">
-            Geef aan waar je nu tegenaan loopt. Op basis van mijn werkwijze als bewegingswetenschapper, sportfysiotherapeut en vitaliteitscoach zie je direct welk traject bij jouw hulpvraag past.
+            Geef aan waar je nu tegenaan loopt. Op basis van onze integrale werkwijze (Sportfysiotherapie, Neurokinetische Therapie, Master Manuele Therapie, Hardloopfysiotherapie en Vitaliteitscoaching) zie je direct welk traject bij jouw hulpvraag past.
           </p>
         </div>
 
@@ -52,7 +52,7 @@ export const KeuzewijzerWidget: React.FC<KeuzewijzerWidgetProps> = ({ onNavigate
                   },
                   {
                     value: 'energy_recovery' as const,
-                    label: 'Meer energie, herstel & celgezondheid',
+                    label: 'Meer energie, slaap & sterker herstelvermogen',
                   },
                   {
                     value: 'endurance_performance' as const,
@@ -109,15 +109,15 @@ export const KeuzewijzerWidget: React.FC<KeuzewijzerWidgetProps> = ({ onNavigate
 
             <div>
               <p className="text-xs font-semibold text-[#14332A] mb-3">
-                03. Hoe ervaar je je algemene herstelvermogen en dagelijkse energie?
+                03. Hoe is de balans tussen je belasting en belastbaarheid?
               </p>
               <div className="grid sm:grid-cols-3 gap-2.5">
                 {[
-                  { value: 'none' as const, label: 'Goed, puur een lokale blessure/doel' },
+                  { value: 'none' as const, label: 'Goed, puur een lokale blessure of sportdoel' },
                   { value: 'slow_recovery' as const, label: 'Ik herstel trager na sport of drukte' },
                   {
                     value: 'fatigue_inflammation' as const,
-                    label: 'Vaak moe, stijve pezen of onrustige slaap',
+                    label: 'Vaak vermoeid, hoge ademhaling of onrustige slaap',
                   },
                 ].map((opt) => {
                   const active = input.systemicSigns === opt.value;
@@ -165,10 +165,10 @@ export const KeuzewijzerWidget: React.FC<KeuzewijzerWidgetProps> = ({ onNavigate
             <div className="pt-6 mt-6 border-t border-[#264D40] flex flex-wrap items-center gap-3">
               <button
                 type="button"
-                onClick={() => onNavigate('contact', recommendation.title)}
+                onClick={() => onNavigate('contact', recommendation.recommendedPackage)}
                 className="inline-flex items-center gap-2 px-5 py-3 bg-[#E8B878] hover:bg-[#DDA860] text-[#14332A] font-semibold text-xs sm:text-sm rounded-lg transition-colors whitespace-nowrap shrink-0"
               >
-                <span>Plan intake voor dit traject</span>
+                <span>Plan afspraak voor dit traject</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
               <button

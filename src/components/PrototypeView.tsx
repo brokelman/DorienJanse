@@ -8,12 +8,19 @@ import {
   Phone,
   Mail,
   Clock,
+  Building2,
+  BookOpen,
 } from 'lucide-react';
 import {
   PageId,
   GENERATED_IMAGES,
   GEO_FAQS,
   PAGE_SEO_CONFIG,
+  PRACTICE_FACTS,
+  TEAM_MEMBERS,
+  OFFICIAL_TARIFFS,
+  KNOWLEDGE_BLOGS,
+  CLIENT_REVIEWS,
 } from '../data/siteContent';
 import { KeuzewijzerWidget } from './KeuzewijzerWidget';
 import { IntakeFormInput, validateIntakeForm } from '../utils/strategyLogic';
@@ -23,16 +30,20 @@ interface PrototypeViewProps {
   onSelectPage: (page: PageId) => void;
 }
 
+type TariffViewMode = 'both' | 'current' | 'advised';
+
 export const PrototypeView: React.FC<PrototypeViewProps> = ({
   activePage,
   onSelectPage,
 }) => {
   const [openFaqId, setOpenFaqId] = useState<string>('faq-1');
+  const [tariffMode, setTariffMode] = useState<TariffViewMode>('both');
+  const [selectedBlogId, setSelectedBlogId] = useState<string | null>(null);
   const [formInput, setFormInput] = useState<IntakeFormInput>({
     name: '',
     email: '',
     phone: '',
-    interest: 'Het Vitaliteitstraject & Omega-3 Celgezondheid',
+    interest: 'Vitaliteitstraject (Basis / Lekker / Premium Fit)',
     message: '',
   });
   const [formErrors, setFormErrors] = useState<
@@ -68,13 +79,17 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
       <div className="bg-[#EFECE4] border-b border-[#DFD9CC]">
         <div className="max-w-7xl mx-auto px-6 py-2.5 flex flex-wrap items-center justify-between gap-4 text-xs">
           <div className="flex items-center gap-2 text-[#4A5A52]">
-            <span className="font-semibold text-[#14332A]">Actieve pagina in prototype:</span>
-            <span aria-hidden="true">·</span>
-            <span>
-              {PAGE_SEO_CONFIG.find((p) => p.pageId === activePage)?.menuLabel}
+            <span className="font-semibold text-[#14332A]">
+              {PRACTICE_FACTS.name}
             </span>
             <span aria-hidden="true" className="hidden sm:inline">·</span>
-            <span className="hidden sm:inline">Ruimtesonde 7, Amersfoort (Calveen / Nieuwland)</span>
+            <span className="hidden sm:inline">
+              {PRACTICE_FACTS.street}, {PRACTICE_FACTS.postalCity}
+            </span>
+            <span aria-hidden="true" className="hidden md:inline">·</span>
+            <span className="hidden md:inline font-mono-tabular font-semibold text-[#184E3B]">
+              Tel: {PRACTICE_FACTS.phone}
+            </span>
           </div>
           <div className="flex items-center gap-1 overflow-x-auto">
             {PAGE_SEO_CONFIG.map((p, idx) => (
@@ -96,7 +111,7 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
       </div>
 
       {/* =========================================================
-          PAGE 1: HOME (Directe propositie: Oorzaakgericht herstel, Vitaliteit & Sportperformance)
+          PAGE 1: HOME
           ========================================================= */}
       {activePage === 'home' && (
         <>
@@ -105,34 +120,35 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
             <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
               <div className="lg:col-span-7 flex flex-col justify-center">
                 <div className="flex flex-wrap items-center gap-2 text-xs text-[#55665E] mb-4">
-                  <span>Sportfysiotherapeut MSc</span>
+                  <span>Dorien Janse (Sportfysio, Bewegingswetenschapper, NKT &amp; Vitaliteit)</span>
                   <span aria-hidden="true">·</span>
-                  <span>Bewegingswetenschapper</span>
-                  <span aria-hidden="true">·</span>
-                  <span>Vitaliteitscoach</span>
-                  <span aria-hidden="true">·</span>
-                  <span>Amersfoort Nieuwland &amp; Calveen</span>
+                  <span>Michaël Kornmann (Master Manueel Therapeut MSc &amp; Hardloopfysio BLT3)</span>
                 </div>
 
                 <h1 className="text-3xl sm:text-5xl lg:text-[3.35rem] leading-[1.12] font-semibold text-[#14332A] mb-6">
                   Herstel bij de bron. Presteer zonder pijn. Leef met blijvende energie.
                 </h1>
 
-                <p className="text-base sm:text-lg text-[#3A4A42] leading-relaxed mb-6 max-w-2xl">
-                  Loop je al maanden rond met een blessure die telkens terugkeert? Merk je dat je lichaam trager herstelt en je energieniveau achterblijft? Of wil je als hardloper of wielrenner sterker, efficiënter en blessurevrij presteren?
+                <p className="text-base sm:text-lg text-[#3A4A42] leading-relaxed mb-5 max-w-2xl">
+                  Waarom ontstaan klachten en waarom herstellen ze soms niet vanzelf? Loop je al maanden rond met een terugkerende (sport)blessure, merk je dat de balans tussen je belasting en belastbaarheid zoek is, of wil je als hardloper of wielrenner sterker en pijnvrij presteren?
                 </p>
 
                 <p className="text-sm sm:text-base text-[#4A5A52] leading-relaxed mb-8 max-w-2xl">
-                  In mijn praktijk aan de Ruimtesonde 7 in Amersfoort kijk ik verder dan de plek waar het pijn doet. Door bewegingswetenschappen, neurokinetische en fasciale fysiotherapie én celgezondheid (Omega-3 balans) te combineren, pakken we de werkelijke oorzaak aan.
+                  Aan de <strong>Ruimtesonde 7 in Amersfoort (Nieuwland / Calveen)</strong> bundelen Dorien Janse en Michaël Kornmann hun expertise. Van Neurokinetische Therapie (NKT – als enige gecertificeerde fysio in Amersfoort), Fasciatherapie, Dry Needling en Master Manuele Therapie tot video-loopanalyse en persoonlijke Vitaliteitscoaching.
                 </p>
 
                 <div className="flex flex-wrap items-center gap-4">
                   <button
                     type="button"
-                    onClick={() => navigateWithInterest('contact', 'Persoonlijke Intake (Fysio / Vitaliteit / Sport)')}
+                    onClick={() =>
+                      navigateWithInterest(
+                        'contact',
+                        'Intake Fysiotherapie / Manuele Therapie MSc / NKT'
+                      )
+                    }
                     className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#184E3B] hover:bg-[#113A2B] text-white font-semibold rounded-lg transition-colors text-sm whitespace-nowrap shrink-0"
                   >
-                    <span>Plan jouw persoonlijke intake</span>
+                    <span>Plan jouw afspraak ({PRACTICE_FACTS.phone})</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
                   <button
@@ -140,7 +156,7 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
                     onClick={() => onSelectPage('vitaliteit')}
                     className="px-6 py-3.5 border border-[#C8CFC5] hover:border-[#184E3B] text-[#14332A] font-semibold rounded-lg transition-colors text-sm whitespace-nowrap shrink-0"
                   >
-                    Ontdek het Vitaliteitstraject
+                    Bekijk het Vitaliteitstraject
                   </button>
                 </div>
               </div>
@@ -149,92 +165,104 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
                 <div className="relative h-full min-h-[340px] sm:min-h-[420px] rounded-2xl overflow-hidden bg-[#E5DEC9] border border-[#DED7C8]">
                   <img
                     src={GENERATED_IMAGES.hero}
-                    alt="Dorien Janse analyseert de loopbeweging en houding van een sporter in haar lichte praktijk in Amersfoort"
+                    alt="Dorien Janse analyseert de loopbeweging en houding van een sporter aan de Ruimtesonde 7 in Amersfoort"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover sepia-[.15]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-6 sm:p-8 text-white">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent flex flex-col justify-end p-6 sm:p-8 text-white">
                     <p className="text-xs text-[#D5E3DC] mb-1">
-                      Praktijk Amersfoort Calveen &amp; Nieuwland · Ruimtesonde 7
+                      Ruimtesonde 7, Amersfoort · Door duursporters, voor sporters én niet-sporters
                     </p>
                     <p className="text-lg font-display font-medium leading-snug">
-                      “De plek waar je pijn voelt is bijna altijd het slachtoffer — wij zoeken de dader in je bewegingsketen én celherstel.”
+                      “Wij zoeken de achterliggende oorzaak waarom je lichaam niet herstelt — en geven je het vertrouwen in je eigen lijf terug.”
                     </p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* FULL-WIDTH 4-COLUMN TRUST & OUTCOME STRIP BELOW HERO SPLIT */}
+            {/* FULL-WIDTH 4-COLUMN TRUST & FACT STRIP BELOW HERO SPLIT */}
             <div className="mt-10 pt-8 border-t border-[#E5E0D5] grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               <div>
-                <p className="text-xs text-[#5B6B63] mb-1">Academische &amp; Klinische Diepgang</p>
+                <p className="text-xs text-[#5B6B63] mb-1">Sterk Behandelteam</p>
                 <p className="text-sm font-semibold text-[#14332A]">
-                  Bewegingswetenschapper + Sportfysio MSc
+                  Dorien Janse (Sportfysio &amp; NKT) + Michaël Kornmann (Manueel MSc)
                 </p>
               </div>
               <div>
-                <p className="text-xs text-[#5B6B63] mb-1">Tijd &amp; Persoonlijke Aandacht</p>
-                <p className="text-sm font-semibold text-[#14332A] font-mono-tabular">
-                  60 min 1-op-1 intake &amp; behandeling
-                </p>
-              </div>
-              <div>
-                <p className="text-xs text-[#5B6B63] mb-1">Herstel van Binnenuit</p>
-                <p className="text-sm font-semibold text-[#14332A] font-mono-tabular">
-                  Omega-6 / Omega-3 Celgezondheid (&lt; 3:1)
-                </p>
-              </div>
-              <div>
-                <p className="text-xs text-[#5B6B63] mb-1">Bereikbaarheid &amp; Toegang</p>
+                <p className="text-xs text-[#5B6B63] mb-1">Unieke Specialisatie Amersfoort</p>
                 <p className="text-sm font-semibold text-[#14332A]">
-                  Geen verwijsbrief · Gratis parkeren voor de deur
+                  Enige NKT-gecertificeerde fysio + Hardloopfysio BLT3
+                </p>
+              </div>
+              <div>
+                <p className="text-xs text-[#5B6B63] mb-1">Vitaliteitstraject (Ook Online)</p>
+                <p className="text-sm font-semibold text-[#14332A] font-mono-tabular">
+                  Basis Fit € 130,- · Lekker Fit € 220,- · Premium Fit € 370,-
+                </p>
+              </div>
+              <div>
+                <p className="text-xs text-[#5B6B63] mb-1">Zorgverzekeraars &amp; Direct Contact</p>
+                <p className="text-sm font-semibold text-[#14332A] font-mono-tabular">
+                  Aanvullend verzekerd · Tel: {PRACTICE_FACTS.phone}
                 </p>
               </div>
             </div>
           </section>
 
-          {/* DE 3 STRATEGISCHE PIJLERS (BENTO HIERARCHY) */}
+          {/* DE 3 STRATEGISCHE PIJLERS */}
           <section className="max-w-7xl mx-auto px-6 py-16 lg:py-20 border-t border-[#E5E0D5]">
             <div className="max-w-3xl mb-12">
               <p className="text-xs font-medium text-[#5B6B63] mb-2">
-                Drie integrale pijlers onder één dak in Amersfoort
+                Persoonlijke Fysio, Training &amp; Vitaliteit onder één dak aan de Ruimtesonde 7
               </p>
               <h2 className="text-3xl sm:text-4xl font-semibold text-[#14332A] mb-4">
-                Waarmee mag ik je op weg helpen?
+                Waarmee mogen wij je op weg helpen?
               </h2>
               <p className="text-base text-[#3F4E47] leading-relaxed">
-                Of je nu al maanden vastloopt met een terugkerende blessure, structureel meer energie en herstelvermogen zoekt, of als duursporter pijnvrij je tijden wilt aanscherpen.
+                Kies het specialisme dat aansluit bij jouw hulpvraag: van het vinden van de oorzaak achter langdurige klachten en het versterken van je herstelvermogen tot video-loopanalyse en Running Bootcamp.
               </p>
             </div>
 
             <div className="grid lg:grid-cols-12 gap-8 items-stretch">
-              {/* KROONJUWEEL: VITALITEITSTRAJECT (COL-SPAN-12 OR 7 FOR PROMINENCE) */}
+              {/* KROONJUWEEL: HET VITALITEITSTRAJECT (BALANS BELASTING/BELASTBAARHEID) */}
               <article className="lg:col-span-12 bg-[#14332A] text-white rounded-2xl overflow-hidden grid lg:grid-cols-12 items-stretch">
                 <div className="lg:col-span-7 p-8 sm:p-10 lg:p-12 flex flex-col justify-between">
                   <div>
                     <div className="flex flex-wrap items-center gap-2 text-xs text-[#A9C6BA] mb-4">
-                      <span>01. Het Kroonjuweel voor Duurzaam Herstel</span>
+                      <span>01. Het Vitaliteitstraject (Ook online mogelijk)</span>
                       <span aria-hidden="true">·</span>
-                      <span>Leefstijl, Energie &amp; Celgezondheid</span>
+                      <span>Balans Belasting &amp; Belastbaarheid</span>
                     </div>
                     <h3 className="text-2xl sm:text-3xl font-semibold text-white mb-4">
-                      Het Integrale Vitaliteitstraject: Waarom herstel begint op celniveau
+                      Het Vitaliteitstraject: Versterk je totale herstelvermogen en vind de oorzaak achter aanhoudende klachten
                     </h3>
                     <p className="text-sm sm:text-base text-[#DCE7E2] leading-relaxed mb-6">
-                      Je kunt nog zulke goede revalidatie-oefeningen doen: als je lichaam van binnenuit verkeert in een staat van laaggradige ontsteking of chronische stress, trapt je herstelvermogen continu op de rem. In het Vitaliteitstraject combineren we een laboratorium-bloedtest naar jouw Omega-3 vetzurenbalans met persoonlijke coaching op slaap, ademhaling, voeding en beweging.
+                      Wanneer klachten maar niet overgaan of je energieniveau structureel laag blijft, kijken we verder dan alleen het bewegingsapparaat. Samen onderzoeken we de balans tussen belasting en belastbaarheid, slaapkwaliteit, ademhaling, voeding, stress, het immuunsysteem (laaggradige ontstekingen) en ingesleten patronen. Je ontvangt een persoonlijk plan op maat (waarbij onder meer gericht voedings- of supplementadvies zoals magnesium of Omega-3 een ondersteunend onderdeel kan zijn).
                     </p>
-                    <div className="grid sm:grid-cols-2 gap-4 text-xs sm:text-sm text-[#E4EFEA] mb-8 pt-4 border-t border-[#264D40]">
+                    <div className="grid sm:grid-cols-3 gap-4 text-xs sm:text-sm text-[#E4EFEA] mb-8 pt-4 border-t border-[#264D40]">
                       <div>
-                        <p className="font-semibold text-[#E8B878] mb-1">Meten = Weten (Bloedtest)</p>
-                        <p className="text-[#C9DBD3]">
-                          Objectieve meting van 11 vetzuren, celwanddoorlaatbaarheid en jouw Omega-6/Omega-3 ratio.
+                        <p className="font-semibold text-[#E8B878] font-mono-tabular mb-1">
+                          Pakket A – Basis Fit · € 130,-
+                        </p>
+                        <p className="text-[#C9DBD3] text-xs">
+                          Uitgebreide analyse-vragenlijst + Intake van 1 uur + Uitleg &amp; persoonlijk plan.
                         </p>
                       </div>
                       <div>
-                        <p className="font-semibold text-[#E8B878] mb-1">Sneller Pees- &amp; Spierherstel</p>
-                        <p className="text-[#C9DBD3]">
-                          Door laaggradige ontstekingen op te lossen reageert je weefsel eindelijk wél op training en therapie.
+                        <p className="font-semibold text-[#E8B878] font-mono-tabular mb-1">
+                          Pakket B – Lekker Fit · € 220,-
+                        </p>
+                        <p className="text-[#C9DBD3] text-xs">
+                          Alles uit Basis Fit + 1 vervolgconsult ter evaluatie na 4 weken.
+                        </p>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-[#E8B878] font-mono-tabular mb-1">
+                          Pakket C – Premium Fit · € 370,-
+                        </p>
+                        <p className="text-[#C9DBD3] text-xs">
+                          Meest gekozen: Basis Fit + 3 vervolgconsulten na 4, 8 en 12 weken.
                         </p>
                       </div>
                     </div>
@@ -245,7 +273,7 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
                       onClick={() => onSelectPage('vitaliteit')}
                       className="inline-flex items-center gap-2 px-5 py-3 bg-[#E8B878] hover:bg-[#DDA860] text-[#14332A] font-semibold rounded-lg text-sm transition-colors whitespace-nowrap shrink-0"
                     >
-                      <span>Bekijk het Vitaliteitstraject</span>
+                      <span>Lees alles over het Vitaliteitstraject</span>
                       <ArrowRight className="w-4 h-4" />
                     </button>
                     <button
@@ -253,47 +281,47 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
                       onClick={() =>
                         navigateWithInterest(
                           'contact',
-                          'Vitaliteitstraject & Omega-3 Vetzurentest'
+                          'Pakket C – Premium Fit (Vitaliteitstraject)'
                         )
                       }
                       className="px-4 py-3 text-sm font-medium text-[#E4EFEA] hover:text-white underline underline-offset-4 whitespace-nowrap shrink-0"
                     >
-                      Plan direct een Vitaliteitscheck
+                      Meld je direct aan
                     </button>
                   </div>
                 </div>
                 <div className="lg:col-span-5 min-h-[280px] bg-[#1D4237]">
                   <img
                     src={GENERATED_IMAGES.vitality}
-                    alt="Vitaliteitstraject en Omega-3 celgezondheid analyse op een eikenhouten tafel"
+                    alt="Vitaliteitstraject consult en persoonlijk herstelplan bij Dorien Janse in Amersfoort"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover"
                   />
                 </div>
               </article>
 
-              {/* PIJLER 2: LANGDURIGE KLACHTEN & FYSIO */}
+              {/* PIJLER 2: LANGDURIGE KLACHTEN, FYSIO, MANUEEL & NKT */}
               <article className="lg:col-span-6 bg-[#F3EFE6] border border-[#E5E0D5] rounded-2xl overflow-hidden flex flex-col justify-between">
                 <div>
                   <div className="h-60 bg-[#E5DEC9] overflow-hidden">
                     <img
                       src={GENERATED_IMAGES.physio}
-                      alt="Oorzaakgerichte sportfysiotherapie en fasciatherapie behandeling"
+                      alt="Fysiotherapie, Manuele Therapie en Neurokinetische Therapie behandeling in Amersfoort"
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="p-8">
                     <div className="flex items-center gap-2 text-xs text-[#5B6B63] mb-3">
-                      <span>02. Voor wie alles al geprobeerd heeft</span>
+                      <span>02. Dorien Janse &amp; Michaël Kornmann</span>
                       <span aria-hidden="true">·</span>
-                      <span>NKT, Fascia &amp; Dry Needling</span>
+                      <span>NKT, Manuele Therapie MSc, Fascia &amp; Dry Needling</span>
                     </div>
                     <h3 className="text-2xl font-semibold text-[#14332A] mb-3">
-                      Langdurige Klachten &amp; Oorzaakgerichte Fysio
+                      Langdurige Klachten, Sportfysio &amp; Manuele Therapie
                     </h3>
                     <p className="text-sm text-[#3F4E47] leading-relaxed mb-4">
-                      Blijft je rug, nek, schouder, knie of achillespees opspelen ondanks eerdere fysiotherapie? Wij behandelen niet enkel het pijnpunt, maar testen via Neurokinetische Therapie (NKT) en Fasciatherapie waar jouw zenuwstelsel en bindweefsel compenseren.
+                      Waarom herstelt een klacht soms niet vanzelf? Met <strong>Neurokinetische Therapie (NKT – uniek in Amersfoort)</strong>, <strong>Master Manuele Therapie MSc</strong>, Fasciatherapie, Dry Needling en inzicht in de neurofysiologie van pijn pakken we de bron van de klacht aan en stimuleren we je zelfredzaamheid.
                     </p>
                   </div>
                 </div>
@@ -303,34 +331,34 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
                     onClick={() => onSelectPage('fysio')}
                     className="inline-flex items-center gap-2 text-sm font-semibold text-[#184E3B] hover:underline whitespace-nowrap"
                   >
-                    <span>Ontdek mijn visie op complexe klachten</span>
+                    <span>Bekijk onze behandelmethoden</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
               </article>
 
-              {/* PIJLER 3: DUURSPORT (HARDLOPEN, WIELRENNEN & TRAINING) */}
+              {/* PIJLER 3: DUURSPORT (HARDLOFYSIO, WIELRENNEN, PT & RUNNING BOOTCAMP) */}
               <article className="lg:col-span-6 bg-[#F3EFE6] border border-[#E5E0D5] rounded-2xl overflow-hidden flex flex-col justify-between">
                 <div>
                   <div className="h-60 bg-[#E5DEC9] overflow-hidden">
                     <img
                       src={GENERATED_IMAGES.endurance}
-                      alt="Hardloper traint pijnvrij in het bos bij Amersfoort na biomechanische loopanalyse"
+                      alt="Hardloopfysiotherapie, videoanalyse en Running Bootcamp in Amersfoort Nieuwland"
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="p-8">
                     <div className="flex items-center gap-2 text-xs text-[#5B6B63] mb-3">
-                      <span>03. Duursport &amp; Performance</span>
+                      <span>03. Door Duursporters, Voor Duursporters</span>
                       <span aria-hidden="true">·</span>
-                      <span>Hardlopen, Wielrennen, PT &amp; Bootcamp</span>
+                      <span>AV Triathlon Ervaring &amp; BLT3</span>
                     </div>
                     <h3 className="text-2xl font-semibold text-[#14332A] mb-3">
-                      Hardloopanalyse, Wielrennen &amp; Gerichte Training
+                      Hardloopfysiotherapie, Wielrennen, PT &amp; Running Bootcamp
                     </h3>
                     <p className="text-sm text-[#3F4E47] leading-relaxed mb-4">
-                      Duursport draait om loopeconomie en ketenstabiliteit. Met video-loopanalyse, wielrenspecifieke core- &amp; heupkrachttraining, 1-op-1 Personal Training en Bootcamp in Amersfoort Nieuwland haal je meer uit elke kilometer zonder overbelasting.
+                      Van het 4-delige <strong>Hardloopfysiotherapie pakket (€ 290,- incl. videoanalyse buiten én op de loopband)</strong> en wielren-specifieke krachttraining tot 1-op-1 Personal Training, Small Group en <strong>Running Bootcamp in Nieuwland</strong> (ma/do gemengd, vr vrouwen &amp; Moeder/Kind – gratis proefles!).
                     </p>
                   </div>
                 </div>
@@ -340,7 +368,7 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
                     onClick={() => onSelectPage('duursport')}
                     className="inline-flex items-center gap-2 text-sm font-semibold text-[#184E3B] hover:underline whitespace-nowrap"
                   >
-                    <span>Bekijk Loopanalyse, Wielrennen &amp; PT</span>
+                    <span>Bekijk Hardlooppakket, PT &amp; Bootcamp</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -351,75 +379,108 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
           {/* INTERACTIVE KEUZEWIJZER WIDGET */}
           <KeuzewijzerWidget onNavigate={navigateWithInterest} />
 
-          {/* CLAIM-TO-PROOF ADJACENCY: CONCRETE PRAKTIJKRESULTATEN */}
+          {/* ECHTE KLANTRECENSIES (SOCIAL PROOF) */}
           <section className="max-w-7xl mx-auto px-6 py-16 lg:py-20">
             <div className="max-w-3xl mb-12">
               <p className="text-xs font-medium text-[#5B6B63] mb-2">
-                Bewezen resultaat in de praktijk · Amersfoort Nieuwland, Calveen, Hoogland &amp; Vathorst
+                Echte klantervaringen · Ruimtesonde 7 Amersfoort
               </p>
               <h2 className="text-3xl sm:text-4xl font-semibold text-[#14332A] mb-3">
-                Hoe cliënten en duursporters het verschil ervaren
+                Wat cliënten en sporters ervaren bij Dorien &amp; Michaël
               </h2>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
-              <blockquote className="bg-[#F3EFE6] border border-[#E5E0D5] rounded-xl p-7 flex flex-col justify-between">
-                <div>
-                  <p className="text-xs text-[#5B6B63] mb-3 font-mono-tabular">
-                    Hardloper (Marathon) · Achillespeesklacht van 14 maanden opgelost
-                  </p>
-                  <p className="text-sm text-[#2C3B34] leading-relaxed mb-6">
-                    “Na ruim een jaar sukkelen met mijn achillespees en talloze kuit-oefeningen ontdekte Dorien via Neurokinetische Therapie dat het probleem uit mijn heupaansturing en een oude enkelverzwikking kwam. Gecombineerd met een kleine cadans-aanpassing uit de loopanalyse loop ik nu weer pijnvrij 50 km per week.”
-                  </p>
-                </div>
-                <footer className="text-xs text-[#4A5A52] pt-4 border-t border-[#E5E0D5]">
-                  <strong className="text-[#14332A]">Jeroen van den Berg (42)</strong> · Amersfoort Vathorst · Traject: Sportfysio + Video-Loopanalyse
-                </footer>
-              </blockquote>
-
-              <blockquote className="bg-[#F3EFE6] border border-[#E5E0D5] rounded-xl p-7 flex flex-col justify-between">
-                <div>
-                  <p className="text-xs text-[#5B6B63] mb-3 font-mono-tabular">
-                    Vitaliteitstraject · Omega-6/3 ratio van 14,8:1 naar 2,6:1 in 120 dagen
-                  </p>
-                  <p className="text-sm text-[#2C3B34] leading-relaxed mb-6">
-                    “Ik werd elke ochtend geradbraakt wakker en had continu vage schouder- en nekklachten. Uit de vetzurentest bleek mijn celgezondheid zwaar in het rood te staan. Door het Vitaliteitstraject, gerichte Omega-3 suppletie en ademhalingsoefeningen is mijn energie terug én zijn mijn peesklachten verdwenen.”
-                  </p>
-                </div>
-                <footer className="text-xs text-[#4A5A52] pt-4 border-t border-[#E5E0D5]">
-                  <strong className="text-[#14332A]">Marloes Hendriks (39)</strong> · Amersfoort Nieuwland · Traject: Integraal Vitaliteitstraject
-                </footer>
-              </blockquote>
-
-              <blockquote className="bg-[#F3EFE6] border border-[#E5E0D5] rounded-xl p-7 flex flex-col justify-between">
-                <div>
-                  <p className="text-xs text-[#5B6B63] mb-3 font-mono-tabular">
-                    Wielrenner · Pijnvrij klimmen na 3 jaar lage rugklachten
-                  </p>
-                  <p className="text-sm text-[#2C3B34] leading-relaxed mb-6">
-                    “Op de racefiets kreeg ik na 45 kilometer steevast een verkramping in mijn onderrug. Dorien maakte eerst de diepe fasciale keten rond mijn heupbuigers los en bouwde daarna met 1-op-1 Personal Training mijn rompstabiliteit op. Afgelopen zomer zonder één minuut rugpijn de Marmotte gefietst.”
-                  </p>
-                </div>
-                <footer className="text-xs text-[#4A5A52] pt-4 border-t border-[#E5E0D5]">
-                  <strong className="text-[#14332A]">Bram Verhoeven (48)</strong> · Hoogland · Traject: Fasciatherapie + Duursport PT
-                </footer>
-              </blockquote>
+            <div className="grid md:grid-cols-2 gap-6">
+              {CLIENT_REVIEWS.map((rev) => (
+                <blockquote
+                  key={rev.id}
+                  className="bg-[#F3EFE6] border border-[#E5E0D5] rounded-xl p-7 flex flex-col justify-between"
+                >
+                  <div>
+                    <p className="text-xs text-[#5B6B63] mb-3 font-medium">
+                      {rev.context}
+                    </p>
+                    <p className="text-sm text-[#2C3B34] leading-relaxed mb-6">
+                      {rev.quote}
+                    </p>
+                  </div>
+                  <footer className="text-xs text-[#4A5A52] pt-4 border-t border-[#E5E0D5]">
+                    <strong className="text-[#14332A]">{rev.author}</strong> ·{' '}
+                    {rev.treatmentTag}
+                  </footer>
+                </blockquote>
+              ))}
             </div>
           </section>
 
-          {/* GEO / AI-KENNISBANK & FAQ OP DE HOMEPAGE */}
+          {/* KENNISBANK / BLOGS VAN DORIEN (SEO & AI AUTORITEITSBEWIJS) */}
           <section className="bg-[#F3EFE6] border-t border-[#E5E0D5] py-16 lg:py-20">
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="max-w-3xl mb-10">
+                <p className="text-xs font-medium text-[#5B6B63] mb-2">
+                  Kennisbank &amp; Blogs op dorienjanse.nl · Wetenschappelijke verdieping
+                </p>
+                <h2 className="text-3xl font-semibold text-[#14332A] mb-3">
+                  Artikelen &amp; inzichten over herstel, slaap, ademhaling en duursport
+                </h2>
+                <p className="text-sm text-[#3F4E47]">
+                  Klik op een onderwerp uit Doriens kennisbank voor de kerninzichten die ook als autoriteitsbron dienen voor zoekmachines en AI-assistenten.
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                {KNOWLEDGE_BLOGS.map((blog) => {
+                  const isSelected = selectedBlogId === blog.id;
+                  return (
+                    <article
+                      key={blog.id}
+                      className="bg-[#FAF8F5] border border-[#E5E0D5] rounded-xl p-6 flex flex-col justify-between"
+                    >
+                      <div>
+                        <div className="flex items-center gap-2 text-xs text-[#5B6B63] mb-2">
+                          <BookOpen className="w-3.5 h-3.5 text-[#184E3B]" />
+                          <span>{blog.category}</span>
+                        </div>
+                        <h3 className="text-base font-semibold text-[#14332A] mb-2">
+                          {blog.title}
+                        </h3>
+                        <p className="text-xs sm:text-sm text-[#3F4E47] leading-relaxed mb-4">
+                          {blog.summary}
+                        </p>
+                      </div>
+                      <div className="pt-3 border-t border-[#EFECE4]">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setSelectedBlogId(isSelected ? null : blog.id)
+                          }
+                          className="text-xs font-semibold text-[#184E3B] hover:underline"
+                        >
+                          {isSelected ? 'Verberg kerninzicht' : `Kerninzicht: ${blog.keyInsight} →`}
+                        </button>
+                        {isSelected && (
+                          <p className="mt-2 text-xs text-[#14332A] bg-[#EFECE4] p-3 rounded-lg">
+                            <strong>Praktische toepassing:</strong> Onderdeel van de integrale analyse binnen de praktijk en het Vitaliteitstraject aan de Ruimtesonde 7.
+                          </p>
+                        )}
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+
+          {/* GEO / AI-KENNISBANK & FAQ */}
+          <section className="py-16 lg:py-20 border-t border-[#E5E0D5]">
             <div className="max-w-4xl mx-auto px-6">
               <div className="mb-10">
                 <p className="text-xs font-medium text-[#5B6B63] mb-2">
-                  Veelgestelde vragen · Wetenschappelijke achtergronden (GEO Kennisbank)
+                  Veelgestelde vragen · Fysiotherapie, Vitaliteit, Duursport &amp; Praktijkverhuur
                 </p>
                 <h2 className="text-3xl font-semibold text-[#14332A] mb-3">
-                  Antwoorden op veelgestelde vragen over herstel, celgezondheid &amp; duursport
+                  Directe antwoorden op veelgestelde vragen
                 </h2>
-                <p className="text-sm text-[#3F4E47]">
-                  Heldere uitleg waarom wij verder kijken dan standaard symptoombestrijding.
-                </p>
               </div>
 
               <div className="space-y-3">
@@ -428,17 +489,17 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
                   return (
                     <div
                       key={faq.id}
-                      className="bg-[#FAF8F5] border border-[#E5E0D5] rounded-xl overflow-hidden"
+                      className="bg-[#F3EFE6] border border-[#E5E0D5] rounded-xl overflow-hidden"
                     >
                       <button
                         type="button"
                         aria-expanded={isOpen}
                         onClick={() => setOpenFaqId(isOpen ? '' : faq.id)}
-                        className="w-full px-6 py-5 text-left flex items-center justify-between gap-4 hover:bg-[#F5F2EB] transition-colors"
+                        className="w-full px-6 py-5 text-left flex items-center justify-between gap-4 hover:bg-[#EAE4D7] transition-colors"
                       >
                         <div>
                           <p className="text-xs text-[#5B6B63] mb-1">
-                            Mechanisme: {faq.scientificMechanism}
+                            Focus: {faq.scientificMechanism}
                           </p>
                           <span className="text-base font-semibold text-[#14332A]">
                             {faq.question}
@@ -451,7 +512,7 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
                         )}
                       </button>
                       {isOpen && (
-                        <div className="px-6 pb-6 pt-2 text-sm text-[#3A4A42] leading-relaxed border-t border-[#EFECE4]">
+                        <div className="px-6 pb-6 pt-2 text-sm text-[#3A4A42] leading-relaxed border-t border-[#E5E0D5] bg-[#FAF8F5]">
                           {faq.answer}
                         </div>
                       )}
@@ -472,16 +533,16 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
           <div className="grid lg:grid-cols-12 gap-10 items-stretch">
             <div className="lg:col-span-7 flex flex-col justify-center">
               <p className="text-xs text-[#5B6B63] mb-3">
-                Oorzaakgerichte Fysiotherapie &amp; Sportfysiotherapie · Amersfoort Nieuwland &amp; Calveen
+                Sportfysiotherapie, Master Manuele Therapie MSc &amp; NKT · Ruimtesonde 7 Amersfoort
               </p>
               <h1 className="text-3xl sm:text-5xl font-semibold text-[#14332A] mb-6">
-                Waarom jouw klacht steeds terugkomt — en hoe we die cirkel wél doorbreken.
+                Waarom ontstaan klachten en waarom herstellen ze soms niet vanzelf?
               </h1>
               <p className="text-base text-[#3A4A42] leading-relaxed mb-4">
-                Heb je het gevoel dat je alles al hebt geprobeerd? Rust gehouden, standaard oefenschema’s afgewerkt, lokaal laten masseren of behandelen — en toch speelt die achillespees, onderrug, nek, heup of schouder telkens weer op zodra je je sport of werk hervat?
+                Loop je al langer rond met een blessure of pijnklacht die maar niet overgaat? Bij <strong>Dorien Janse</strong> (Sportfysiotherapeut, Bewegingswetenschapper &amp; enige NKT-gecertificeerde fysio in Amersfoort) en <strong>Michaël Kornmann</strong> (Fysiotherapeut, Master Manueel Therapeut MSc &amp; Hardloopfysio BLT3) zoeken we naar de daadwerkelijke oorzaak achter jouw klacht.
               </p>
               <p className="text-base text-[#3A4A42] leading-relaxed mb-8">
-                De verklaring vanuit de bewegingswetenschappen is helder: <strong>de plek waar je pijn voelt, is bijna altijd het slachtoffer van een schakelfout elders in de keten.</strong> Zolang je alleen het overbelaste weefsel behandelt, blijft de werkelijke blokkade bestaan.
+                Wij combineren diepgaand ketenonderzoek met kennis over de <strong>neurofysiologie van pijn</strong> (de biologische en fysiologische processen achter pijnervaring). Ons doel is om je met positivisme weer vertrouwen te geven in je eigen lichaam en je zelfredzaam te maken, zodat je niet afhankelijk wordt van zorg.
               </p>
               <div className="flex flex-wrap gap-4">
                 <button
@@ -489,19 +550,19 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
                   onClick={() =>
                     navigateWithInterest(
                       'contact',
-                      'Intake Langdurige Klachten & Oorzaakgerichte Fysio'
+                      'Intake Fysiotherapie / Manuele Therapie MSc / NKT'
                     )
                   }
                   className="px-6 py-3.5 bg-[#184E3B] hover:bg-[#113A2B] text-white font-semibold rounded-lg text-sm whitespace-nowrap shrink-0"
                 >
-                  Plan een oorzaakgerichte intake (60 min)
+                  Plan je intake bij Dorien of Michaël
                 </button>
               </div>
             </div>
             <div className="lg:col-span-5 rounded-2xl overflow-hidden bg-[#E5DEC9] border border-[#E5E0D5]">
               <img
                 src={GENERATED_IMAGES.physio}
-                alt="Hands-on ketenonderzoek en fasciatherapie bij Dorien Janse in Amersfoort"
+                alt="Hands-on ketenonderzoek, NKT en manuele therapie aan de Ruimtesonde 7 in Amersfoort"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover min-h-[320px]"
               />
@@ -510,39 +571,39 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
 
           <div className="border-t border-[#E5E0D5] pt-14">
             <h2 className="text-2xl sm:text-3xl font-semibold text-[#14332A] mb-8">
-              Alle behandelvormen logisch geïntegreerd in één aanpak
+              Onze specialistische behandelmethoden
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 {
                   num: '01',
-                  title: 'Neurokinetische Therapie (NKT)',
-                  desc: 'Na een oude blessure, operatie of overbelasting kan het motorisch controlecentrum in je brein een spier "uitschakelen", waardoor een andere spier continu overwerkt. Met specifieke spiertesten sporen we deze foutieve aansturing op en resetten we de brein-spierverbinding.',
+                  title: 'Neurokinetische Therapie (NKT – Uniek in Amersfoort)',
+                  desc: 'Dorien is de enige gecertificeerde NKT-fysiotherapeut in Amersfoort. Na een oude blessure, val of litteken kan het motorisch controlecentrum in het brein spieren verkeerd blijven aansturen. Met NKT testen en resetten we deze compensatiepatronen.',
                 },
                 {
                   num: '02',
-                  title: 'Fasciatherapie (Bindweefselketens)',
-                  desc: 'Al je spieren en gewrichten zijn verbonden via één driedimensionaal fascianetwerk. Een verkleving rond een oud enkel- of buiklitteken kan letterlijk trekken aan je heup of schouder. Door de fasciale glijlagen vrij te maken ontstaat direct ruimte.',
+                  title: 'Master Manuele Therapie MSc & Pijn-neurofysiologie',
+                  desc: 'Michaël Kornmann (MSc) is gespecialiseerd in complexe gewrichts- en wervelkolomklachten en de biologische processen achter pijnervaring. Gericht op herstel van bewegingsvrijheid en vertrouwen in je eigen lijf.',
                 },
                 {
                   num: '03',
-                  title: 'Sportfysiotherapie MSc',
-                  desc: 'Diepgaande biomechanische analyse van jouw sportspecifieke belasting. Wij vertalen bevindingen op de behandelbank direct naar een verantwoorde opbouw richting hardlopen, wielrennen, veld- of krachtsport.',
+                  title: 'Fasciatherapie & Dry Needling',
+                  desc: 'Zowel Dorien als Michaël zijn gespecialiseerd in Dry Needling. In combinatie met Fasciatherapie ontspannen we diepliggende spierknopen (triggerpoints) en maken we verklevingen in het bindweefselnetwerk vrij.',
                 },
                 {
                   num: '04',
-                  title: 'Manuele Technieken & Gewrichtsmobilisaties',
-                  desc: 'Wanneer een gewricht in de wervelkolom, enkel of heup mechanisch geblokkeerd is, kan de omliggende musculatuur niet goed aanspannen. Met gerichte mobilisaties herstellen we de natuurlijke gewrichtsbeweging.',
+                  title: 'Sportfysiotherapie & Revalidatie (Oefenzaal 65 m²)',
+                  desc: 'Vanuit de behandelkamer schakelen we direct door naar onze compleet ingerichte oefenzaal van 65 m² om je belastbaarheid sportspecifiek op te bouwen.',
                 },
                 {
                   num: '05',
-                  title: 'Dry Needling',
-                  desc: 'Met een flinterdun, steriel naaldje prikken we direct in overactieve myofasciale triggerpoints (spierknopen). De spier ontspant direct, de doorbloeding herstelt en we kunnen meteen de juiste aansturing intrainen.',
+                  title: 'Ademhalingstherapie & Spanningsregulatie',
+                  desc: 'Een verstoorde ademhaling houdt nek-, schouder- en hoofdpijnklachten vaak onbewust in stand. Wij brengen je ademhalingspatroon in rust en tijdens inspanning weer in balans.',
                 },
                 {
                   num: '06',
-                  title: 'Sportmassage & Herstelbehandeling',
-                  desc: 'Gerichte dieptemassage voor sporters die zware trainingsweken draaien en spierspanning tijdig willen afvoeren voordat het een blessure wordt.',
+                  title: 'Medical Taping (€ 15,-) & Hooikoorts Taping (€ 32,-)',
+                  desc: 'Ondersteunend tapen na bijvoorbeeld een zweepslag of enkelverzwikking (€ 15,- eigen bijdrage) én effectieve Hooikoorts taping (2x intapen inclusief tape voor € 32,-).',
                 },
               ].map((method) => (
                 <div
@@ -568,23 +629,23 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
       )}
 
       {/* =========================================================
-          PAGE 3: VITALITEIT & LEEFSTIJL (KROONJUWEEL)
+          PAGE 3: VITALITEIT & LEEFSTIJL
           ========================================================= */}
       {activePage === 'vitaliteit' && (
         <section className="max-w-7xl mx-auto px-6 py-12 lg:py-16 space-y-16">
           <div className="grid lg:grid-cols-12 gap-10 items-stretch">
             <div className="lg:col-span-7 flex flex-col justify-center">
               <p className="text-xs text-[#5B6B63] mb-3">
-                Het Kroonjuweel · Integrale Vitaliteitscoaching &amp; Celgezondheid in Amersfoort
+                Het Vitaliteitstraject (Ook online mogelijk) · Dorien Janse Amersfoort
               </p>
               <h1 className="text-3xl sm:text-5xl font-semibold text-[#14332A] mb-6">
-                Het Vitaliteitstraject: Duurzame energie en weefselherstel beginnen op celniveau.
+                Het Vitaliteitstraject: Herstel de balans tussen belasting en belastbaarheid.
               </h1>
               <p className="text-base text-[#3A4A42] leading-relaxed mb-4">
-                Merk je dat je “batterij” minder snel oplaadt? Word je niet uitgerust wakker, herstel je traag na een drukke werkweek of training, of blijven pees- en spierklachten sluimeren ondanks goede oefeningen?
+                Waarom herstellen sommige klachten niet en waarom voel je je soms structureel vermoeid? In het Vitaliteitstraject kijken we naar jouw <strong>totale herstelvermogen</strong> en zoeken we de achterliggende oorzaak achter aanhoudende klachten.
               </p>
               <p className="text-base text-[#3A4A42] leading-relaxed mb-8">
-                In het Vitaliteitstraject behandelen we geen losse symptomen, maar optimaliseren we het biologische fundament van jouw lichaam. Inclusief objectieve laboratorium-bloedtest naar je <strong>Omega-6 / Omega-3 vetzurenbalans</strong> en celwanddoorlaatbaarheid.
+                We brengen alle bepalende pijlers samen in kaart: de balans tussen <strong>belasting en belastbaarheid, slaap, ademhaling, voeding, stress, het immuunsysteem (laaggradige ontstekingen) en ingesleten patronen</strong>. Waar passend binnen jouw persoonlijke plan kijken we ook naar ondersteunend voedings- of supplementadvies (zoals magnesium of Omega-3).
               </p>
               <div className="flex flex-wrap gap-4">
                 <button
@@ -592,71 +653,115 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
                   onClick={() =>
                     navigateWithInterest(
                       'contact',
-                      'Vitaliteitstraject & Omega-3 Vetzurentest'
+                      'Pakket C – Premium Fit (Vitaliteitstraject)'
                     )
                   }
                   className="px-6 py-3.5 bg-[#184E3B] hover:bg-[#113A2B] text-white font-semibold rounded-lg text-sm whitespace-nowrap shrink-0"
                 >
-                  Vraag jouw Vitaliteits-intake aan
+                  Meld je aan voor het Vitaliteitstraject
                 </button>
               </div>
             </div>
             <div className="lg:col-span-5 rounded-2xl overflow-hidden bg-[#E5DEC9] border border-[#E5E0D5]">
               <img
                 src={GENERATED_IMAGES.vitality}
-                alt="Het Vitaliteitstraject en Omega-3 celgezondheid bij Dorien Janse in Amersfoort"
+                alt="Vitaliteitstraject en leefstijlcoaching bij Dorien Janse in Amersfoort"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover min-h-[320px]"
               />
             </div>
           </div>
 
-          {/* DE LINK TUSSEN OMEGA-3, CELGEZONDHEID EN PEESHERSTEL */}
+          {/* DE 3 OFFICIËLE VITALITEITSPAKKETTEN */}
           <div className="bg-[#14332A] text-white rounded-2xl p-8 sm:p-12">
             <div className="max-w-3xl mb-8">
               <p className="text-xs text-[#A9C6BA] mb-2">
-                Wetenschappelijk Fundament · Meten = Weten
+                Officiële Pakketten 2026 · Zowel in de praktijk aan de Ruimtesonde 7 als online mogelijk
               </p>
-              <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-4">
-                De directe schakel tussen jouw Omega-3 index, laaggradige ontstekingen en peesherstel
+              <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-3">
+                Kies het Vitaliteitspakket dat bij jouw hulpvraag past
               </h2>
-              <p className="text-sm sm:text-base text-[#DCE7E2] leading-relaxed">
-                Om een achillespees, schouderpees of spier te herstellen na belasting, zet je lichaam een ontstekingsreactie aan. Omega-6 vetzuren fungeren hierbij als het gaspedaal, terwijl zuivere Omega-3 vetzuren (EPA &amp; DHA) het rempedaal zijn dat de ontsteking weer uitzet en celwanden soepel houdt.
+              <p className="text-sm text-[#DCE7E2]">
+                Elk pakket start met een uitgebreide analyse-vragenlijst vooraf, gevolgd door een 1-op-1 intake van een vol uur en een concreet persoonlijk plan.
               </p>
             </div>
-            <div className="grid md:grid-cols-3 gap-6 pt-6 border-t border-[#264D40]">
-              <div>
-                <p className="text-2xl font-mono-tabular font-semibold text-[#E8B878] mb-1">
-                  &gt; 12 : 1
-                </p>
-                <p className="text-xs font-semibold text-white mb-1">
-                  Gemiddelde startwaarde bij sporters
-                </p>
-                <p className="text-xs text-[#C9DBD3] leading-relaxed">
-                  Meer dan 90% van de mensen die we testen heeft een sterk verhoogde Omega-6/Omega-3 ratio, waardoor pezen en gewrichten in een sluimerende ontstekingsstaat blijven.
-                </p>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="bg-[#1B3F34] border border-[#2C5B4C] rounded-xl p-6 flex flex-col justify-between">
+                <div>
+                  <p className="text-xs text-[#A9C6BA] mb-1">Pakket A</p>
+                  <h3 className="text-xl font-semibold text-white mb-2">Basis Fit</h3>
+                  <p className="text-2xl font-mono-tabular font-semibold text-[#E8B878] mb-1">
+                    € 130,-
+                  </p>
+                  <p className="text-xs text-[#A9C6BA] mb-4 font-mono-tabular">
+                    Marktconform advies Amersfoort: € 145,-
+                  </p>
+                  <p className="text-xs sm:text-sm text-[#DCE7E2] leading-relaxed">
+                    Uitgebreide analyse vragenlijst + Intake van 1 uur + Heldere uitleg en persoonlijk plan van aanpak.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() =>
+                    navigateWithInterest('contact', 'Pakket A – Basis Fit (€ 130,-)')
+                  }
+                  className="mt-6 w-full py-2.5 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold rounded-lg transition-colors"
+                >
+                  Kies Pakket A – Basis Fit
+                </button>
               </div>
-              <div>
-                <p className="text-2xl font-mono-tabular font-semibold text-[#E8B878] mb-1">
-                  &lt; 3 : 1
-                </p>
-                <p className="text-xs font-semibold text-white mb-1">
-                  Optimale streefwaarde op celniveau
-                </p>
-                <p className="text-xs text-[#C9DBD3] leading-relaxed">
-                  Bij een ratio onder de 3:1 en een Omega-3 gehalte boven de 8% nemen celwanden voedingsstoffen optimaal op en worden afvalstoffen efficiënt afgevoerd.
-                </p>
+
+              <div className="bg-[#1B3F34] border border-[#2C5B4C] rounded-xl p-6 flex flex-col justify-between">
+                <div>
+                  <p className="text-xs text-[#A9C6BA] mb-1">Pakket B</p>
+                  <h3 className="text-xl font-semibold text-white mb-2">Lekker Fit</h3>
+                  <p className="text-2xl font-mono-tabular font-semibold text-[#E8B878] mb-1">
+                    € 220,-
+                  </p>
+                  <p className="text-xs text-[#A9C6BA] mb-4 font-mono-tabular">
+                    Marktconform advies Amersfoort: € 235,-
+                  </p>
+                  <p className="text-xs sm:text-sm text-[#DCE7E2] leading-relaxed">
+                    Alles uit Basis Fit + 1 vervolgconsult ter evaluatie en bijsturing na 4 weken.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() =>
+                    navigateWithInterest('contact', 'Pakket B – Lekker Fit (€ 220,-)')
+                  }
+                  className="mt-6 w-full py-2.5 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold rounded-lg transition-colors"
+                >
+                  Kies Pakket B – Lekker Fit
+                </button>
               </div>
-              <div>
-                <p className="text-2xl font-mono-tabular font-semibold text-[#E8B878] mb-1">
-                  120 Dagen
-                </p>
-                <p className="text-xs font-semibold text-white mb-1">
-                  De levenscyclus van rode bloedcellen
-                </p>
-                <p className="text-xs text-[#C9DBD3] leading-relaxed">
-                  Omdat rode bloedcellen zich in circa 120 dagen vernieuwen, begeleiden we je gedurende 4 tot 6 maanden inclusief nulmeting, gericht plan en hertest.
-                </p>
+
+              <div className="bg-[#235042] border-2 border-[#E8B878] rounded-xl p-6 flex flex-col justify-between">
+                <div>
+                  <p className="text-xs text-[#E8B878] font-semibold mb-1">
+                    Pakket C · Meest gekozen voor blijvende verandering
+                  </p>
+                  <h3 className="text-xl font-semibold text-white mb-2">Premium Fit</h3>
+                  <p className="text-2xl font-mono-tabular font-semibold text-[#E8B878] mb-1">
+                    € 370,-
+                  </p>
+                  <p className="text-xs text-[#A9C6BA] mb-4 font-mono-tabular">
+                    Marktconform advies Amersfoort: € 385,-
+                  </p>
+                  <p className="text-xs sm:text-sm text-[#DCE7E2] leading-relaxed">
+                    Alles uit Basis Fit + 3 vervolgconsulten ter evaluatie na 4, 8 en 12 weken om nieuwe patronen duurzaam te verankeren.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() =>
+                    navigateWithInterest('contact', 'Pakket C – Premium Fit (€ 370,-)')
+                  }
+                  className="mt-6 w-full py-2.5 bg-[#E8B878] hover:bg-[#DDA860] text-[#14332A] text-xs font-semibold rounded-lg transition-colors"
+                >
+                  Kies Pakket C – Premium Fit
+                </button>
               </div>
             </div>
           </div>
@@ -671,16 +776,16 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
           <div className="grid lg:grid-cols-12 gap-10 items-stretch">
             <div className="lg:col-span-7 flex flex-col justify-center">
               <p className="text-xs text-[#5B6B63] mb-3">
-                Duursport &amp; Bewegingswetenschap · Hardlopen, Wielrennen, PT &amp; Bootcamp Amersfoort
+                Hardloopfysiotherapie (BLT3), Wielrennen, PT &amp; Running Bootcamp · Amersfoort Nieuwland
               </p>
               <h1 className="text-3xl sm:text-5xl font-semibold text-[#14332A] mb-6">
-                Slimmer trainen, efficiënter bewegen en pijnvrij presteren.
+                Door duursporters, voor duursporters: slimmer trainen en pijnvrij presteren.
               </h1>
               <p className="text-base text-[#3A4A42] leading-relaxed mb-4">
-                Of je nu traint voor de Marathon van Amersfoort, trailruns op de Utrechtse Heuvelrug of lange ritten op de racefiets en gravelbike: als duursporter herhaal je dezelfde beweging tienduizenden keren achter elkaar.
+                Zowel <strong>Dorien Janse</strong> (schaatste tot haar 25e fanatiek, wielrende op landelijk niveau, liep in 2023 o.a. de marathon en is jarenlang lid van AV Triathlon) als <strong>Michaël Kornmann</strong> (Hardloopfysiotherapeut BLT3, hardlooptrainer bij AV Triathlon, wielrenner en fitnesser) kennen de wereld van de geblesseerde duursporter van binnenuit.
               </p>
               <p className="text-base text-[#3A4A42] leading-relaxed mb-8">
-                Als bewegingswetenschapper, sportfysiotherapeut én trainer kijk ik niet alleen naar je pijnlijke knie of scheenbeen, maar analyseer ik je volledige biomechanica, pasfrequentie, heupstabiliteit en krachtopbouw.
+                Of je nu traint voor een 5 km, marathon of ультраtrail, of klachtenvrij op de racefiets wilt zitten: wij combineren videoanalyse (buiten én op de loopband) met loopscholing, ketenkracht en motiverende trainingen.
               </p>
               <div className="flex flex-wrap gap-4">
                 <button
@@ -688,19 +793,31 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
                   onClick={() =>
                     navigateWithInterest(
                       'contact',
-                      'Biomechanische Video-Loopanalyse / Duursport'
+                      'Hardloopfysiotherapie pakket (4x – € 290,-)'
                     )
                   }
                   className="px-6 py-3.5 bg-[#184E3B] hover:bg-[#113A2B] text-white font-semibold rounded-lg text-sm whitespace-nowrap shrink-0"
                 >
-                  Boek een Video-Loopanalyse of Sport-intake
+                  Boek het Hardloopfysiotherapie pakket (€ 290,-)
+                </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    navigateWithInterest(
+                      'contact',
+                      'Gratis Proefles Running Bootcamp Nieuwland'
+                    )
+                  }
+                  className="px-6 py-3.5 border border-[#C8CFC5] hover:border-[#184E3B] text-[#14332A] font-semibold rounded-lg text-sm whitespace-nowrap shrink-0"
+                >
+                  Gratis proefles Running Bootcamp
                 </button>
               </div>
             </div>
             <div className="lg:col-span-5 rounded-2xl overflow-hidden bg-[#E5DEC9] border border-[#E5E0D5]">
               <img
                 src={GENERATED_IMAGES.endurance}
-                alt="Hardloopanalyse en duursportbegeleiding in Amersfoort Nieuwland"
+                alt="Hardloopanalyse en Running Bootcamp in Amersfoort Nieuwland"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover min-h-[320px]"
               />
@@ -709,42 +826,50 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
 
           <div className="grid md:grid-cols-2 gap-8 pt-8 border-t border-[#E5E0D5]">
             <div className="bg-[#F3EFE6] border border-[#E5E0D5] rounded-xl p-8">
-              <p className="text-xs text-[#5B6B63] mb-2">01 · Voor Hardlopers</p>
+              <p className="text-xs text-[#5B6B63] font-mono-tabular mb-2">
+                01 · Hardloopfysiotherapie Pakket (4x) · € 290,-
+              </p>
               <h2 className="text-xl font-semibold text-[#14332A] mb-3">
-                Hardloopbegeleiding &amp; Video-Loopanalyse
+                Videoanalyse (buiten én op de loopband) + 3 Trainingen
               </h2>
-              <p className="text-sm text-[#3F4E47] leading-relaxed mb-4">
-                We filmen je looppatroon vanuit meerdere hoeken en analyseren je cadans, grondcontacttijd, voetplaatsing (overstriding) en bekken-/heupcontrole. Je krijgt direct toepasbare looptechniek-aanwijzingen en gerichte oefeningen tegen lopersknie, achillespees- en scheenbeenklachten.
+              <p className="text-sm text-[#3F4E47] leading-relaxed">
+                Ons complete pakket voor hardlopers en ultralopers bestaat uit een uitgebreide intake van 1 uur inclusief videoanalyse van je looptechniek (zowel buiten als binnen op de loopband), gevolgd door 3 gerichte trainingen van 45 minuten waarin we werken aan loopscholing, cadans en ketenstabiliteit.
               </p>
             </div>
 
             <div className="bg-[#F3EFE6] border border-[#E5E0D5] rounded-xl p-8">
-              <p className="text-xs text-[#5B6B63] mb-2">02 · Voor Wielrenners &amp; Gravelbikers</p>
+              <p className="text-xs text-[#5B6B63] font-mono-tabular mb-2">
+                02 · Running Bootcamp Nieuwland · Gratis Proefles
+              </p>
               <h2 className="text-xl font-semibold text-[#14332A] mb-3">
-                Ketenstabiliteit &amp; Kracht voor op de Fiets
+                Maandag &amp; Donderdag (M/V) · Vrijdag Vrouwen &amp; Moeder/Kind
               </h2>
-              <p className="text-sm text-[#3F4E47] leading-relaxed mb-4">
-                Urenlang in een aerodynamische houding zitten vraagt veel van je onderrug, nek en heupbuigers. Wij combineren fasciale mobiliteit van de voorste keten met gerichte core- en bilspieractivatie zodat je meer kracht op de pedalen levert zonder rugpijn.
+              <p className="text-sm text-[#3F4E47] leading-relaxed">
+                Verantwoord buiten trainen in Amersfoort Nieuwland onder begeleiding van een sportfysiotherapeut. Op <strong>maandag en donderdag</strong> voor mannen en vrouwen; op <strong>vrijdag</strong> speciaal voor vrouwen (ook Moeder &amp; Kind bootcamp mogelijk). Keuze uit knipkaart (10x € 100,-), 3-maandenabonnement (€ 80,- / € 140,-) of jaarabonnement (€ 305,- / € 532,-).
               </p>
             </div>
 
             <div className="bg-[#F3EFE6] border border-[#E5E0D5] rounded-xl p-8">
-              <p className="text-xs text-[#5B6B63] mb-2">03 · Maatwerk op jouw niveau</p>
+              <p className="text-xs text-[#5B6B63] font-mono-tabular mb-2">
+                03 · Personal Training, Small Group &amp; Zelfstandig Trainen
+              </p>
               <h2 className="text-xl font-semibold text-[#14332A] mb-3">
-                Personal Training (1-op-1 of Small Group)
+                Individueel (30/45 min), Small Group (max. 4 pers.) of Oefenzaal
               </h2>
-              <p className="text-sm text-[#3F4E47] leading-relaxed mb-4">
-                Verantwoord sterker worden onder het toeziend oog van een bewegingswetenschapper en sportfysio. Ideaal voor revalidatie naar sporthervatting, sportspecifieke krachttraining voor duursporters of het duurzaam opbouwen van spierkracht en fitheid.
+              <p className="text-sm text-[#3F4E47] leading-relaxed">
+                Train 1-op-1 in onze oefenzaal van 65 m² (Intake € 75,-, PT 30 min € 50,- of 45 min € 75,-), kies voor Small Group met max. 4 personen (knipkaart 10x 30 min € 185,-), of train zelfstandig op afgesproken tijden met de 12x knipkaart (€ 85,-).
               </p>
             </div>
 
             <div className="bg-[#F3EFE6] border border-[#E5E0D5] rounded-xl p-8">
-              <p className="text-xs text-[#5B6B63] mb-2">04 · Buiten sporten in Nieuwland</p>
+              <p className="text-xs text-[#5B6B63] font-mono-tabular mb-2">
+                04 · Wielrennen &amp; Sportmassage (Ook als cadeaubon)
+              </p>
               <h2 className="text-xl font-semibold text-[#14332A] mb-3">
-                Bootcamp Amersfoort Nieuwland
+                Kracht voor Wielrenners &amp; Herstel-Sportmassage
               </h2>
-              <p className="text-sm text-[#3F4E47] leading-relaxed mb-4">
-                Elke woensdagochtend (09:00 – 10:00 uur) heerlijk buiten trainen in een toegankelijke, gezellige groep in Amersfoort Nieuwland. Functionele oefeningen voor het hele lichaam met altijd professionele aanpassingen wanneer je rekening wilt houden met een blessure.
+              <p className="text-sm text-[#3F4E47] leading-relaxed">
+                Gerichte core- en ketentraining voor wielrenners én stevige sportmassage voor optimaal spierherstel: 30 minuten (€ 39,-), 45 minuten (€ 58,50) of een knipkaart 10x 30 minuten (€ 375,-). Ook verkrijgbaar als cadeaubon!
               </p>
             </div>
           </div>
@@ -752,77 +877,230 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
       )}
 
       {/* =========================================================
-          PAGE 5: OVER DORIEN & WERKWIJZE
+          PAGE 5: OVER ONS, TEAM (DORIEN & MICHAËL), TARIEVEN & VERHUUR
           ========================================================= */}
       {activePage === 'over' && (
         <section className="max-w-7xl mx-auto px-6 py-12 lg:py-16 space-y-16">
-          <div className="grid lg:grid-cols-12 gap-10 items-stretch">
-            <div className="lg:col-span-7 flex flex-col justify-center">
-              <p className="text-xs text-[#5B6B63] mb-3">
-                Over Dorien Janse · Praktijk Ruimtesonde 7 in Amersfoort (Calveen / Nieuwland)
-              </p>
-              <h1 className="text-3xl sm:text-5xl font-semibold text-[#14332A] mb-6">
-                Bewegingswetenschapper, Sportfysio MSc, Trainer &amp; Vitaliteitscoach.
-              </h1>
-              <p className="text-base text-[#3A4A42] leading-relaxed mb-4">
-                Mijn drijfveer is simpel: ik neem geen genoegen met “daar moet je maar mee leren leven” of het eindeloos herhalen van hetzelfde standaard oefenprogramma.
-              </p>
-              <p className="text-base text-[#3A4A42] leading-relaxed mb-6">
-                Door mijn achtergrond in de Bewegingswetenschappen én Sportfysiotherapie te combineren met Neurokinetische Therapie, Fasciatherapie en orthomoleculaire celgezondheid, help ik mensen in regio Amersfoort (Nieuwland, Calveen, Hoogland en Vathorst) om hun lichaam weer echt te begrijpen en duurzaam te versterken.
-              </p>
+          <div className="max-w-3xl">
+            <p className="text-xs text-[#5B6B63] mb-2">
+              Ons Team aan de Ruimtesonde 7 in Amersfoort · Praktijk AGB: {PRACTICE_FACTS.practiceAgb} · KvK: {PRACTICE_FACTS.kvk}
+            </p>
+            <h1 className="text-3xl sm:text-5xl font-semibold text-[#14332A] mb-4">
+              Maak kennis met Dorien Janse &amp; Michaël Kornmann
+            </h1>
+            <p className="text-base text-[#3A4A42] leading-relaxed">
+              Dorien werkt niet alleen! Samen vormen Dorien en Michaël een hecht, deskundig team. Beiden zijn actief bij AV Triathlon in Amersfoort en combineren wetenschappelijke diepgang met jarenlange eigen duursport- en praktijkervaring.
+            </p>
+          </div>
+
+          {/* 2 TEAM PROFILES: DORIEN & MICHAËL */}
+          <div className="grid lg:grid-cols-2 gap-8 items-stretch">
+            {TEAM_MEMBERS.map((member) => (
+              <article
+                key={member.name}
+                className="bg-[#F3EFE6] border border-[#E5E0D5] rounded-2xl p-8 flex flex-col justify-between space-y-6"
+              >
+                <div className="space-y-4">
+                  <div className="pb-4 border-b border-[#DFD9CC]">
+                    <h2 className="text-2xl font-semibold text-[#14332A]">
+                      {member.name}
+                    </h2>
+                    <p className="text-sm font-medium text-[#184E3B] mt-1">
+                      {member.role}
+                    </p>
+                    <p className="text-xs text-[#5B6B63] font-mono-tabular mt-2">
+                      E-mail: {member.email} · {member.registrations.join(' · ')}
+                    </p>
+                  </div>
+
+                  <p className="text-sm text-[#2C3B34] leading-relaxed">
+                    {member.intro}
+                  </p>
+
+                  <div>
+                    <p className="text-xs font-semibold text-[#14332A] mb-2">
+                      Aandachtsgebieden &amp; Specialisaties:
+                    </p>
+                    <ul className="space-y-1.5 text-xs sm:text-sm text-[#3A4A42]">
+                      {member.specializations.map((spec, idx) => (
+                        <li key={idx} className="flex items-start gap-2">
+                          <Check className="w-4 h-4 text-[#184E3B] shrink-0 mt-0.5" />
+                          <span>{spec}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="bg-[#FAF8F5] border border-[#E5E0D5] rounded-xl p-4 space-y-2 text-xs sm:text-sm text-[#3A4A42]">
+                    <p>
+                      <strong className="text-[#14332A]">Sportieve achtergrond:</strong>{' '}
+                      {member.sportsBackground}
+                    </p>
+                    <p>
+                      <strong className="text-[#14332A]">Visie op herstel:</strong>{' '}
+                      {member.vision}
+                    </p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          {/* OFFICIËLE TARIEVEN 2026 & ADVIES AMERSFOORT MET TOGGLE */}
+          <div className="space-y-8 pt-8 border-t border-[#E5E0D5]">
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+              <div className="max-w-3xl">
+                <p className="text-xs text-[#5B6B63] mb-2">
+                  Volledig &amp; Feitelijk Tarievenoverzicht (2026)
+                </p>
+                <h2 className="text-3xl font-semibold text-[#14332A] mb-3">
+                  Tarieven, Pakketten &amp; Zorgverzekeraars
+                </h2>
+                <p className="text-sm text-[#3F4E47] leading-relaxed">
+                  {PRACTICE_FACTS.insuranceNote}
+                </p>
+              </div>
+
+              {/* Interactive Tariff Mode Switcher */}
+              <div className="flex items-center gap-1 p-1 bg-[#EFECE4] border border-[#DFD9CC] rounded-xl shrink-0">
+                <button
+                  type="button"
+                  onClick={() => setTariffMode('both')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors whitespace-nowrap ${
+                    tariffMode === 'both'
+                      ? 'bg-[#14332A] text-white font-semibold'
+                      : 'text-[#4A5A52] hover:text-[#14332A]'
+                  }`}
+                >
+                  Huidig + Advies Amersfoort
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setTariffMode('current')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors whitespace-nowrap ${
+                    tariffMode === 'current'
+                      ? 'bg-[#14332A] text-white font-semibold'
+                      : 'text-[#4A5A52] hover:text-[#14332A]'
+                  }`}
+                >
+                  Alleen Huidige Tarieven (2026)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setTariffMode('advised')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors whitespace-nowrap ${
+                    tariffMode === 'advised'
+                      ? 'bg-[#14332A] text-white font-semibold'
+                      : 'text-[#4A5A52] hover:text-[#14332A]'
+                  }`}
+                >
+                  Marktconform Advies Amersfoort
+                </button>
+              </div>
             </div>
-            <div className="lg:col-span-5 rounded-2xl overflow-hidden bg-[#E5DEC9] border border-[#E5E0D5]">
-              <img
-                src={GENERATED_IMAGES.hero}
-                alt="Dorien Janse in haar praktijk aan de Ruimtesonde 7 in Amersfoort"
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover min-h-[320px]"
-              />
+
+            <div className="grid lg:grid-cols-2 gap-8">
+              {OFFICIAL_TARIFFS.map((cat) => (
+                <div
+                  key={cat.id}
+                  className="bg-[#F3EFE6] border border-[#E5E0D5] rounded-2xl p-6 sm:p-8 flex flex-col justify-between"
+                >
+                  <div>
+                    <h3 className="text-xl font-semibold text-[#14332A] mb-2">
+                      {cat.title}
+                    </h3>
+                    <p className="text-xs text-[#4A5A52] leading-relaxed mb-5">
+                      {cat.subtitle}
+                    </p>
+
+                    <div className="divide-y divide-[#DFD9CC] text-sm">
+                      {cat.items.map((item, idx) => (
+                        <div key={idx} className="py-3 space-y-1">
+                          <div className="flex items-start justify-between gap-4">
+                            <span
+                              className={`font-medium ${
+                                item.highlight
+                                  ? 'text-[#184E3B] font-semibold'
+                                  : 'text-[#14332A]'
+                              }`}
+                            >
+                              {item.name}
+                            </span>
+                            <div className="text-right font-mono-tabular shrink-0">
+                              {tariffMode === 'current' && (
+                                <span className="font-semibold text-[#14332A]">
+                                  {item.currentPrice}
+                                </span>
+                              )}
+                              {tariffMode === 'advised' && (
+                                <span className="font-semibold text-[#184E3B]">
+                                  {item.advisedPrice || item.currentPrice}
+                                </span>
+                              )}
+                              {tariffMode === 'both' && (
+                                <div>
+                                  <span className="font-semibold text-[#14332A]">
+                                    {item.currentPrice}
+                                  </span>
+                                  {item.advisedPrice &&
+                                    item.advisedPrice !== item.currentPrice && (
+                                      <span className="block text-xs text-[#5B6B63]">
+                                        Advies: {item.advisedPrice}
+                                      </span>
+                                    )}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                          {item.description && (
+                            <p className="text-xs text-[#5B6B63] leading-relaxed">
+                              {item.description}
+                            </p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {cat.footnote && (
+                    <p className="mt-6 pt-4 border-t border-[#DFD9CC] text-xs text-[#4A5A52] leading-relaxed">
+                      <strong>Vergoeding:</strong> {cat.footnote}
+                    </p>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
 
-          <div className="bg-[#F3EFE6] border border-[#E5E0D5] rounded-2xl p-8 sm:p-10">
-            <h2 className="text-2xl font-semibold text-[#14332A] mb-3">
-              Tarieven, Behandeltijden &amp; Vergoedingen
-            </h2>
-            <p className="text-sm text-[#3F4E47] leading-relaxed mb-8 max-w-3xl">
-              Om volledige 1-op-1 aandacht en ruime behandeltijden (45 tot 60 minuten) te garanderen, werkt de praktijk bewust contractvrij. Je ontvangt de factuur per e-mail en kunt deze indienen bij je aanvullende zorgverzekering (afhankelijk van je polis wordt doorgaans 60% tot 100% van het marktconforme tarief vergoed).
-            </p>
-            <div className="divide-y divide-[#DFD9CC] text-sm">
-              {[
-                {
-                  service: 'Intake, ketenonderzoek & eerste behandeling Fysiotherapie / Sportfysio (60 min)',
-                  price: '€ 92,00',
-                },
-                {
-                  service: 'Vervolgbehandeling Fysiotherapie / NKT / Fasciatherapie / Dry Needling (45 min)',
-                  price: '€ 72,50',
-                },
-                {
-                  service: 'Biomechanische Video-Loopanalyse & Ketenonderzoek (60 min)',
-                  price: '€ 95,00',
-                },
-                {
-                  service: 'Het Integrale Vitaliteitstraject (incl. Omega-3 bloedtest, analyse & coaching)',
-                  price: 'Op maat na intake',
-                },
-                {
-                  service: 'Personal Training 1-op-1 (60 min)',
-                  price: '€ 75,00',
-                },
-                {
-                  service: 'Bootcamp Amersfoort Nieuwland (woensdagochtend 09:00 - 10:00, 10-rittenkaart)',
-                  price: '€ 95,00',
-                },
-              ].map((row, idx) => (
+          {/* SAMENWERKING & VERHUUR PRAKTIJKRUIMTE (1E VERDIEPING RUIMTESONDE 7) */}
+          <div className="bg-[#14332A] text-white rounded-2xl p-8 sm:p-10">
+            <div className="max-w-3xl mb-6">
+              <div className="flex items-center gap-2 text-xs text-[#A9C6BA] mb-2">
+                <Building2 className="w-4 h-4 text-[#E8B878]" />
+                <span>Voor (para)medici, coaches &amp; personal trainers in Amersfoort</span>
+              </div>
+              <h2 className="text-2xl font-semibold text-white mb-2">
+                {PRACTICE_FACTS.roomRental.title}
+              </h2>
+              <p className="text-sm text-[#DCE7E2] leading-relaxed">
+                {PRACTICE_FACTS.roomRental.description}
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6">
+              {PRACTICE_FACTS.roomRental.spaces.map((sp) => (
                 <div
-                  key={idx}
-                  className="py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2"
+                  key={sp.name}
+                  className="bg-[#1B3F34] border border-[#2C5B4C] rounded-xl p-5"
                 >
-                  <span className="font-medium text-[#14332A]">{row.service}</span>
-                  <span className="font-mono-tabular font-semibold text-[#184E3B]">
-                    {row.price}
-                  </span>
+                  <p className="text-lg font-mono-tabular font-semibold text-[#E8B878] mb-1">
+                    {sp.size}
+                  </p>
+                  <h3 className="text-base font-semibold text-white mb-1">
+                    {sp.name}
+                  </h3>
+                  <p className="text-xs text-[#C9DBD3] leading-relaxed">
+                    {sp.usage}
+                  </p>
                 </div>
               ))}
             </div>
@@ -831,21 +1109,21 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
       )}
 
       {/* =========================================================
-          PAGE 6: CONTACT & AFSPRAAK MAKEN (INCL. VALIDATED FORM)
+          PAGE 6: CONTACT, OPENINGSTIJDEN, VERHUUR & AFSPRAAK MAKEN
           ========================================================= */}
       {activePage === 'contact' && (
-        <section className="max-w-7xl mx-auto px-6 py-12 lg:py-16">
+        <section className="max-w-7xl mx-auto px-6 py-12 lg:py-16 space-y-12">
           <div className="grid lg:grid-cols-12 gap-12 items-start">
-            <div className="lg:col-span-5 space-y-8">
+            <div className="lg:col-span-5 space-y-6">
               <div>
                 <p className="text-xs text-[#5B6B63] mb-2">
-                  Contact &amp; Afspraak maken · Directe Toegang (geen verwijsbrief nodig)
+                  Contact &amp; Afspraak maken · {PRACTICE_FACTS.name}
                 </p>
                 <h1 className="text-3xl sm:text-4xl font-semibold text-[#14332A] mb-4">
-                  Zet vandaag de eerste stap naar blijvend herstel.
+                  Neem contact op of plan direct je afspraak.
                 </h1>
                 <p className="text-sm sm:text-base text-[#3F4E47] leading-relaxed">
-                  Plan direct je intake aan de Ruimtesonde 7 in Amersfoort (Calveen / Nieuwland) of stel je vraag. Ik neem binnen één werkdag persoonlijk contact met je op.
+                  Bel of WhatsApp naar <strong>{PRACTICE_FACTS.phone}</strong>, stuur een e-mail of vul het formulier in. Wij helpen je graag verder aan de Ruimtesonde 7 in Amersfoort.
                 </p>
               </div>
 
@@ -853,43 +1131,65 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-[#184E3B] shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-[#14332A]">Praktijklocatie Amersfoort</p>
-                    <p className="text-[#3F4E47]">Ruimtesonde 7, 3824 MZ Amersfoort (Calveen)</p>
-                    <p className="text-xs text-[#5B6B63] mt-0.5">
-                      Gratis parkeren voor de deur · 3 min vanaf Nieuwland, Hoogland &amp; Vathorst
+                    <p className="font-semibold text-[#14332A]">Adres</p>
+                    <p className="text-[#3F4E47]">
+                      {PRACTICE_FACTS.street}, {PRACTICE_FACTS.postalCity}
                     </p>
                   </div>
                 </div>
+
                 <div className="flex items-start gap-3">
                   <Phone className="w-5 h-5 text-[#184E3B] shrink-0 mt-0.5" />
                   <div>
                     <p className="font-semibold text-[#14332A]">Telefoon &amp; WhatsApp</p>
-                    <p className="text-[#3F4E47] font-mono-tabular">06 - 24 72 28 54</p>
+                    <p className="text-[#3F4E47] font-mono-tabular font-semibold">
+                      {PRACTICE_FACTS.phone}
+                    </p>
                   </div>
                 </div>
+
                 <div className="flex items-start gap-3">
                   <Mail className="w-5 h-5 text-[#184E3B] shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-[#14332A]">E-mail</p>
-                    <p className="text-[#3F4E47]">info@dorienjanse.nl</p>
+                    <p className="font-semibold text-[#14332A]">E-mailadressen</p>
+                    <p className="text-[#3F4E47]">
+                      Algemeen / Dorien: <strong>{PRACTICE_FACTS.emailDorien}</strong>
+                    </p>
+                    <p className="text-[#3F4E47]">
+                      Michaël Kornmann: <strong>{PRACTICE_FACTS.emailMichael}</strong>
+                    </p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3">
+
+                <div className="flex items-start gap-3 pt-2 border-t border-[#DFD9CC]">
                   <Clock className="w-5 h-5 text-[#184E3B] shrink-0 mt-0.5" />
-                  <div>
-                    <p className="font-semibold text-[#14332A]">Behandeltijden</p>
-                    <p className="text-[#3F4E47]">Op afspraak (maandag t/m vrijdag)</p>
+                  <div className="w-full">
+                    <p className="font-semibold text-[#14332A] mb-1.5">Openingstijden</p>
+                    <dl className="space-y-1 text-xs text-[#3F4E47]">
+                      {PRACTICE_FACTS.openingHours.map((oh) => (
+                        <div key={oh.day} className="flex justify-between gap-2">
+                          <dt className="font-medium text-[#14332A]">{oh.day}:</dt>
+                          <dd className="font-mono-tabular">{oh.hours}</dd>
+                        </div>
+                      ))}
+                    </dl>
                   </div>
+                </div>
+
+                <div className="pt-3 border-t border-[#DFD9CC] text-xs text-[#5B6B63] space-y-1 font-mono-tabular">
+                  <p>Praktijk AGB-code: {PRACTICE_FACTS.practiceAgb} | KvK-nr: {PRACTICE_FACTS.kvk}</p>
+                  <p>Dorien Janse: BIG {PRACTICE_FACTS.dorienBig} | AGB {PRACTICE_FACTS.dorienAgb}</p>
+                  <p>Michaël Kornmann: BIG {PRACTICE_FACTS.michaelBig}</p>
                 </div>
               </div>
             </div>
 
             <div className="lg:col-span-7 bg-[#F3EFE6] border border-[#E5E0D5] rounded-2xl p-6 sm:p-10">
               <h2 className="text-2xl font-semibold text-[#14332A] mb-2">
-                Plan je intake of stel je vraag
+                Afspraak maken of vraag stellen
               </h2>
               <p className="text-xs sm:text-sm text-[#5B6B63] mb-6">
-                Kies het traject waar je meer over wilt weten. Na verzending plannen we samen een passend moment in.
+                Kies het gewenste traject of consult bij Dorien of Michaël.
               </p>
 
               {submittedRequest ? (
@@ -899,10 +1199,10 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
                 >
                   <div className="flex items-center gap-2 text-[#E8B878] font-semibold">
                     <Check className="w-5 h-5" />
-                    <span>Bedankt {submittedRequest.name}, je aanvraag is ontvangen!</span>
+                    <span>Bedankt {submittedRequest.name}, je bericht is ontvangen!</span>
                   </div>
                   <p className="text-sm text-[#DCE7E2] leading-relaxed">
-                    Dorien neemt binnen 24 uur contact met je op via{' '}
+                    Wij nemen zo snel mogelijk contact met je op via{' '}
                     <strong>{submittedRequest.phone}</strong> of{' '}
                     <strong>{submittedRequest.email}</strong> voor:{' '}
                     <em>{submittedRequest.interest}</em>.
@@ -915,7 +1215,7 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
                         name: '',
                         email: '',
                         phone: '',
-                        interest: 'Het Vitaliteitstraject & Omega-3 Celgezondheid',
+                        interest: 'Vitaliteitstraject (Basis / Lekker / Premium Fit)',
                         message: '',
                       });
                     }}
@@ -954,7 +1254,7 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
                         htmlFor="intake-phone"
                         className="block text-xs font-semibold text-[#14332A] mb-1.5"
                       >
-                        Telefoonnummer (voor overleg / WhatsApp) *
+                        Telefoonnummer *
                       </label>
                       <input
                         id="intake-phone"
@@ -963,7 +1263,7 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
                         onChange={(e) =>
                           setFormInput((prev) => ({ ...prev, phone: e.target.value }))
                         }
-                        placeholder="06 12345678"
+                        placeholder="06-14184448"
                         className="w-full px-3.5 py-2.5 bg-white border border-[#CFC8B8] rounded-lg text-sm text-[#14332A] focus:outline-none focus:border-[#184E3B]"
                       />
                       {formErrors.phone && (
@@ -1010,17 +1310,23 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
                         }
                         className="w-full px-3.5 py-2.5 bg-white border border-[#CFC8B8] rounded-lg text-sm text-[#14332A] focus:outline-none focus:border-[#184E3B]"
                       >
-                        <option value="Het Vitaliteitstraject & Omega-3 Celgezondheid">
-                          Het Vitaliteitstraject &amp; Omega-3 Celgezondheid
+                        <option value="Vitaliteitstraject (Basis / Lekker / Premium Fit)">
+                          Vitaliteitstraject (Basis / Lekker / Premium Fit)
                         </option>
-                        <option value="Langdurige Klachten & Oorzaakgerichte Sportfysio">
-                          Langdurige Klachten &amp; Oorzaakgerichte Sportfysio
+                        <option value="Intake Fysiotherapie / Manuele Therapie MSc / NKT">
+                          Intake Fysiotherapie / Manuele Therapie MSc / NKT
                         </option>
-                        <option value="Video-Loopanalyse & Duursportbegeleiding">
-                          Video-Loopanalyse &amp; Duursportbegeleiding
+                        <option value="Hardloopfysiotherapie pakket (4x – € 290,-)">
+                          Hardloopfysiotherapie pakket (4x – € 290,-)
                         </option>
-                        <option value="Personal Training (1:1) of Bootcamp Nieuwland">
-                          Personal Training (1:1) of Bootcamp Nieuwland
+                        <option value="Gratis Proefles Running Bootcamp Nieuwland">
+                          Gratis Proefles Running Bootcamp Nieuwland
+                        </option>
+                        <option value="Personal Training / Small Group / Sportmassage">
+                          Personal Training / Small Group / Sportmassage
+                        </option>
+                        <option value="Verhuur Praktijkruimte / Oefenzaal (Ruimtesonde 7)">
+                          Verhuur Praktijkruimte / Oefenzaal (Ruimtesonde 7)
                         </option>
                       </select>
                       {formErrors.interest && (
@@ -1045,7 +1351,7 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
                       onChange={(e) =>
                         setFormInput((prev) => ({ ...prev, message: e.target.value }))
                       }
-                      placeholder="Vertel kort waar je tegenaan loopt en hoe lang dit al speelt..."
+                      placeholder="Vertel kort waar je tegenaan loopt en of je voorkeur hebt voor Dorien of Michaël..."
                       className="w-full px-3.5 py-2.5 bg-white border border-[#CFC8B8] rounded-lg text-sm text-[#14332A] focus:outline-none focus:border-[#184E3B]"
                     />
                     {formErrors.message && (
@@ -1057,7 +1363,7 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
                     type="submit"
                     className="w-full sm:w-auto px-6 py-3.5 bg-[#184E3B] hover:bg-[#113A2B] text-white font-semibold rounded-lg text-sm transition-colors"
                   >
-                    Verstuur intake-aanvraag
+                    Verstuur aanvraag
                   </button>
                 </form>
               )}
@@ -1066,65 +1372,62 @@ export const PrototypeView: React.FC<PrototypeViewProps> = ({
         </section>
       )}
 
-      {/* QUIET FOOTER */}
+      {/* QUIET FOOTER WITH EXACT REGISTRATIONS, OPENING HOURS & ROOM RENTAL */}
       <footer className="mt-auto bg-[#14332A] text-[#DCE7E2] py-12 border-t border-[#264D40]">
         <div className="max-w-7xl mx-auto px-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm">
           <div>
             <p className="font-display text-lg font-semibold text-white mb-2">
-              Dorien Janse
+              {PRACTICE_FACTS.name}
             </p>
-            <p className="text-xs text-[#A9C6BA] leading-relaxed">
-              Personal Fysio, Training &amp; Vitaliteit. Oorzaakgericht herstel en duursportbegeleiding door Bewegingswetenschapper &amp; Sportfysiotherapeut MSc.
+            <p className="text-xs text-[#A9C6BA] leading-relaxed mb-3">
+              Dorien Janse (Sportfysio, Bewegingswetenschapper, NKT &amp; Vitaliteitscoach) &amp; Michaël Kornmann (Fysiotherapeut, Master Manueel Therapeut MSc &amp; Hardloopfysio BLT3).
+            </p>
+            <p className="text-xs text-[#8FAEA1] font-mono-tabular">
+              Praktijk AGB: {PRACTICE_FACTS.practiceAgb} · KvK: {PRACTICE_FACTS.kvk}
+              <br />
+              BIG Dorien: {PRACTICE_FACTS.dorienBig} (AGB {PRACTICE_FACTS.dorienAgb})
+              <br />
+              BIG Michaël: {PRACTICE_FACTS.michaelBig}
             </p>
           </div>
+
           <div>
-            <p className="font-semibold text-white mb-2">Praktijklocatie</p>
-            <p className="text-xs text-[#A9C6BA] leading-relaxed">
-              Ruimtesonde 7, 3824 MZ Amersfoort
-              <br />
-              Calveen / Nieuwland (vlakbij Hoogland &amp; Vathorst)
-              <br />
-              Gratis parkeren voor de deur
+            <p className="font-semibold text-white mb-2">Adres &amp; Openingstijden</p>
+            <p className="text-xs text-[#A9C6BA] mb-2">
+              {PRACTICE_FACTS.street}, {PRACTICE_FACTS.postalCity}
             </p>
-          </div>
-          <div>
-            <p className="font-semibold text-white mb-2">Snel naar</p>
-            <ul className="space-y-1.5 text-xs text-[#A9C6BA]">
-              <li>
-                <button
-                  type="button"
-                  onClick={() => onSelectPage('vitaliteit')}
-                  className="hover:text-white transition-colors"
-                >
-                  Het Vitaliteitstraject &amp; Omega-3
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => onSelectPage('fysio')}
-                  className="hover:text-white transition-colors"
-                >
-                  Langdurige Klachten &amp; NKT/Fascia
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => onSelectPage('duursport')}
-                  className="hover:text-white transition-colors"
-                >
-                  Hardloopanalyse, Wielrennen &amp; PT
-                </button>
-              </li>
+            <ul className="space-y-1 text-xs text-[#A9C6BA] font-mono-tabular">
+              {PRACTICE_FACTS.openingHours.map((oh) => (
+                <li key={oh.day}>
+                  {oh.day}: {oh.hours}
+                </li>
+              ))}
             </ul>
           </div>
+
+          <div>
+            <p className="font-semibold text-white mb-2">Verhuur Praktijkruimte (1e verd.)</p>
+            <p className="text-xs text-[#A9C6BA] leading-relaxed mb-2">
+              Per dagdeel te huur aan de Ruimtesonde 7 voor (para)medici en personal trainers:
+            </p>
+            <ul className="space-y-1 text-xs text-[#DCE7E2] font-mono-tabular">
+              <li>• Behandelkamers (16 m²)</li>
+              <li>• Cursus-/groepsruimte yoga/pilates (31 m²)</li>
+              <li>• Compleet ingerichte oefenzaal (65 m²)</li>
+            </ul>
+          </div>
+
           <div>
             <p className="font-semibold text-white mb-2">Direct Contact</p>
-            <p className="text-xs text-[#A9C6BA] font-mono-tabular mb-1">
-              Tel / WhatsApp: 06 - 24 72 28 54
+            <p className="text-xs text-[#E8B878] font-mono-tabular font-semibold mb-1">
+              Tel / WhatsApp: {PRACTICE_FACTS.phone}
             </p>
-            <p className="text-xs text-[#A9C6BA] mb-3">info@dorienjanse.nl</p>
+            <p className="text-xs text-[#A9C6BA] mb-1">
+              Dorien: {PRACTICE_FACTS.emailDorien}
+            </p>
+            <p className="text-xs text-[#A9C6BA] mb-4">
+              Michaël: {PRACTICE_FACTS.emailMichael}
+            </p>
             <button
               type="button"
               onClick={() => onSelectPage('contact')}
